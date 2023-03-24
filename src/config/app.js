@@ -17,7 +17,7 @@ const App = {
     this.setMiddleware(app);
 
     app.listen(PORT || 3006, () => {
-      console.log(`jsrf-api listening on Port ${PORT}`);
+      console.log(`JetSetRadio-API listening on Port ${PORT}`);
     })
   },
 
