@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import MiddlewareManager from './managers/MiddlewareManager.js';
+import swaggerDocs from './utils/swagger.js';
 
 
 const PORT = process.env.PORT;
@@ -15,7 +16,12 @@ const App = {
 
     app.listen(PORT || 3006, () => {
       console.log(`JetSetRadio-API listening on Port ${PORT}`);
+      this.init(app);
     })
+  },
+
+  init(app) {
+    swaggerDocs(app);
   },
 
   setMiddleware(app) {

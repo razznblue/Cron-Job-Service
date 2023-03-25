@@ -8,10 +8,32 @@ const router = express.Router();
 
 router.use('/api', api);
 
+/**
+ * @openapi
+ * /:
+ *  get:
+ *    tags: 
+ *      - Index
+ *    description: Homepage of JetSetRadio API
+ *    responses:
+ *      200:
+ *        description: App is serving the home page
+ */
 router.get('/', (req, res) => {
   res.send('JetSetRadio API');
 })
 
+/**
+ * @openapi
+ * /health:
+ *   get:
+ *     tags: 
+ *       - HealthCheck
+ *     description: Responds if the app is running
+ *     responses:
+ *       200:
+ *         description: App is Healthy!
+ */
 router.get('/health', (req, res) => {
   const healthCheckManager = new HealthCheckManager();
   let healthStatus;

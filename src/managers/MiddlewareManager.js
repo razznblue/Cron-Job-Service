@@ -21,6 +21,7 @@ class MiddlewareManager {
     this.app.use(express.json());
     this.app.use('/', router);
   }
+
 }
 
 export default MiddlewareManager;
