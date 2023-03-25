@@ -1,3 +1,3 @@
-import App from "./src/config/app.js";
+import App from "./src/app.js";
 
 App.start();
