@@ -2,6 +2,7 @@ import express from 'express';
 
 import api from './api/apiRouter.js';
 import HealthCheckManager from '../managers/HealthCheckManager.js';
+import LOGGER from '../utils/logger.js';
 
 
 const router = express.Router();
@@ -41,6 +42,7 @@ router.get('/health', (req, res) => {
     healthStatus = healthCheckManager.getAppHealth();
     res.send(healthStatus);
   } catch (error) {
+    LOGGER.error(`App Health Check Failed \n${error}`);
     healthStatus.message = error;
     res.status(504).send(healthStatus);
   }

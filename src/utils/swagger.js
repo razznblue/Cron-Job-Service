@@ -1,5 +1,6 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import LOGGER from './logger.js';
 
 
 const options = {
@@ -25,7 +26,7 @@ const swaggerDocs = (app) => {
     res.send(swaggerSpec);
   });
 
-  console.log(`Docs available at ${process.env.BASE_URL}/docs`);
+  LOGGER.info(`Docs available at ${process.env.BASE_URL}/docs`);
 }
 
 export default swaggerDocs;
