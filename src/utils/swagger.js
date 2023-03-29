@@ -17,16 +17,18 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerDocs = (app) => {
+
+  const docsPath = '/api-docs';
   // Swagger Page
-  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use(docsPath, swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // Docs in JSON
-  app.get('/docs.json', (req, res) => {
+  app.get(`${docsPath}.json`, (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
   });
 
-  LOGGER.info(`Docs available at ${process.env.BASE_URL}/docs`);
+  LOGGER.info(`Docs available at ${process.env.BASE_URL}${docsPath}`);
 }
 
 export default swaggerDocs;

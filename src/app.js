@@ -5,6 +5,7 @@ dotenv.config();
 import MiddlewareManager from './managers/MiddlewareManager.js';
 import swaggerDocs from './utils/swagger.js';
 import LOGGER from './utils/logger.js';
+import { cleanupJobs } from './jobs/jobsUtil.js';
 
 
 const PORT = process.env.PORT;
@@ -23,6 +24,7 @@ const App = {
 
   init(app) {
     swaggerDocs(app);
+    cleanupJobs();
   },
 
   setMiddleware(app) {

@@ -5,15 +5,26 @@
   "main": "index.js",
   "scripts": {
     "build": "npm install",
-    "start": "node index.js",
-    "dev": "nodemon --inspect index.js"
+    "prod": "export $(cat ./prod.env | egrep -v '#|^$' | xargs) && node index.js",
+    "qa": "export $(cat ./qa.env | egrep -v '#|^$' | xargs) && nodemon --inspect index.js"
   },
   "type": "module",
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "^6.9.4",
+    "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cookie-parser": "^1.4.6",
+    "cron-parser": "^4.8.1",
     "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "node-schedule": "^2.1.1",
     "nodemon": "^2.0.22",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",

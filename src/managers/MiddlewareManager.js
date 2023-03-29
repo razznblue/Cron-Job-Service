@@ -1,6 +1,7 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
+import cookieParser from 'cookie-parser';
 
 import router from '../routes/router.js';
 
@@ -19,6 +20,7 @@ class MiddlewareManager {
     this.app.use(express.static(path.join(__dirname, '..', 'public')));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(cookieParser());
     this.app.use('/', router);
   }
 
