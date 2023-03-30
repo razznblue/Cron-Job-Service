@@ -25,11 +25,12 @@ const App = {
     const baseUrl = process.env.BASE_URL;
     setUpSwagger(app);
     
-    // On startup, delete any remaining CronJob records in the DB
+    //On startup, delete any remaining CronJob records in the DB
+    const delay = process.env.NODE_ENV === 'production' ? 120000 : 10000;
     setTimeout(async () => {
       const {data: {dbState}} = await axios.get(`${baseUrl}/health`);
       dbState.core === 'connected' ? cleanupJobs() : LOGGER.warn(`SKipped cleaning up CronJobs : CORE_DB connection not established`);
-    }, 10000);
+    }, delay);
 
     // Ping App every 10 minutes
     setInterval(async () => {
