@@ -6,6 +6,7 @@ import BaseModel from "../models/BaseModel.js";
 import LOGGER from "../utils/logger.js";
 import { JobInterchanger } from './jobInterchanger.js';
 import schedule from 'node-schedule';
+import { connectedToDB } from '../config/db.js';
 
 
 export const createAndSaveJob = async (jobName) => {
@@ -160,7 +161,13 @@ const updateFireTimes = async (cronJob, options) => {
 }
 
 export const cleanupJobs = async () => {
-  await BaseModel.deleteAllFromCollection('cronJob');
+  try {
+    if (connectedToDB()) {
+      await BaseModel.deleteAllFromCollection('cronJob');
+    }
+  } catch(err) {
+    LOGGER.error(`Unable to delete All Cron Job from Mongo: \n${err}`);
+  }
 }
 
 export const getAllAvailableJobNames = () => {

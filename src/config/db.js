@@ -51,6 +51,8 @@ const getMongoUri = (DB_TYPE) => {
   return `mongodb+srv://${user}:${password}@${clusterName}.${domainName}/${database}?retryWrites=true&w=majority`;
 }
 
+export const connectedToDB = () => { return mongoose.connection.readyState === 1 ? true : false }
+
 export const coreConnection = createDBConnection(getMongoUri('CORE_DB'));
 export const jsrConnection = createDBConnection(getMongoUri('JSR_DB'));
 export const jsrfConnection = createDBConnection(getMongoUri('JSRF_DB'));
