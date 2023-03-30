@@ -21,53 +21,79 @@ export const scrapeGraffitiTags = async () => {
   LOGGER.info(`Starting ${JSRF_GRAFFITI_TAGS} Cron Job`);
   console.time(jobExecutionTimeName);
   const url = `${WIKI_BASE_URL}${GRAFFITI_TAGS_PATH}`;
-  const response = await axios.get(url);
-  const $ = load(response.data);
 
-  let savedDocuments = 0;
+  const requests = await Promise.all([axios.get(url), getCloudFiles('jsrf/graffiti-tags/', '/')])
+  const wikiHtml = requests[0];
+  const cloudFiles = requests[1];
+
+  const $ = load(wikiHtml.data);
   const modelName = 'graffitiTagJsrf';
-  const cloudFiles = await getCloudFiles('jsrf/graffiti-tags/', '/');
+  const promises = [];
+
   const trList = $('.article-table > tbody > tr');
+  const filteredTrList = filterTableRows($, trList);
 
-  for (const el of trList) {
-    const graffitiTag = new GraffitiTagJSRF();
-
+  LOGGER.info(`Filtered GraffitiTag TableRows records from ${trList.length} to ${filteredTrList.length}`);
+  for (const el of filteredTrList) {
     const tds = $(el).find("td");
-    const number = $(tds[0]).text().trim();
-    const tagName = $(tds[1]).text().trim();
-    const level = $(tds[2]).text().trim() !== 'N/A' ? $(tds[2]).text().trim() : null;
-    const location = $(tds[3]).text().trim() !== 'N/A' ? $(tds[3]).text().trim() : null;
-    const size = $(tds[4]).text().trim();
-    let imageUrl = '';
-
-    const imgUrlExists = $(tds[5]).find('figure').length > 0;
-    if (imgUrlExists) {
-      imageUrl = $(tds[5]).find('figure').find('a').find('img').attr('data-src');
+    const dataToSave = {
+      number: $(tds[0]).text().trim(),
+      tagName: $(tds[1]).text().trim(),
+      level: $(tds[2]).text().trim() !== 'N/A' ? $(tds[2]).text().trim() : null,
+      location: $(tds[3]).text().trim() !== 'N/A' ? $(tds[3]).text().trim() : null,
+      size: $(tds[4]).text().trim(),
+      wikiImageUrl: getWikiImageUrl($, tds)
     }
-    if (!imageUrl) { // Some img tags dont have a data-src on this website
-      imageUrl = $(tds[5]).find('figure').find('a').find('img').attr('src');
-    }
+    promises.push(saveGraffitiTag(modelName, dataToSave, cloudFiles))
+  }
+  const users = await Promise.all(promises);
+  console.timeEnd(jobExecutionTimeName);
+  LOGGER.info(`Finished Graffiti-Tags Job. Created ${users.length} new documents.`);
+}
 
-    // In the future, set up "UpdateFields" option a CronJob object to customize the updating of certain fields
-    const exists = await BaseModel.existsByKeyAndValue(modelName, 'number', number);
+const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
+  const { number, tagName, level, location, size, wikiImageUrl } = dataToSave;
+  const exists = await BaseModel.existsByKeyAndValue(modelName, 'number', number);
     if (!exists && number) {
-      LOGGER.debug(`Creating new GraffitiTag ${number} : ${tagName}`);
+      const graffitiTag = new GraffitiTagJSRF();
       graffitiTag.number = number;
       graffitiTag.tagName = tagName;
       graffitiTag.level = level;
       graffitiTag.location = location;
       graffitiTag.size = size;
-      graffitiTag.wikiImageUrl = imageUrl;
+      graffitiTag.wikiImageUrl = wikiImageUrl;
       setImgUrl(graffitiTag, cloudFiles);
       await graffitiTag.save();
-      savedDocuments++;
+      LOGGER.debug(`Saved new GraffitiTag ${number} : ${tagName}`);
     } else {
       LOGGER.debug(`Found existing GraffitiTag in DB ${number}`);
     }
-  }
+}
 
-  console.timeEnd(jobExecutionTimeName);
-  LOGGER.info(`Finished Graffiti-Tags Job. Created ${savedDocuments} new documents.`);
+const getWikiImageUrl = ($, tds) => {
+  let wikiImageUrl = '';
+  const wikiImageUrlExists = $(tds[5]).find('figure').length > 0;
+  if (wikiImageUrlExists) {
+    wikiImageUrl = $(tds[5]).find('figure').find('a').find('img').attr('data-src');
+  }
+  if (!wikiImageUrlExists) { // Some img tags on the wiki dont have a data-src attr
+    wikiImageUrl = $(tds[5]).find('figure').find('a').find('img').attr('src');
+  }
+  return wikiImageUrl;
+}
+
+const filterTableRows = ($, tableRowsList) => {
+  const filteredTrList = [];
+  const filteredNumbers = [];
+  for (const tr of tableRowsList) {
+    const tds = $(tr).find("td");
+    const number = $(tds[0]).text().trim();
+    if (number && !filteredNumbers.includes(number)) {
+      filteredTrList.push(tr);
+      filteredNumbers.push(number);
+    }
+  }
+  return filteredTrList;
 }
 
 const setImgUrl = (graffitiTag, cloudFiles) => {

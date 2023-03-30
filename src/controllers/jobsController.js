@@ -21,9 +21,9 @@ export const createJob = async (req, res) => {
 }
 
 export const triggerJob = async (req, res) => {
+  res.status(204).send();
   const jobName = req?.params.jobName;
   await triggerCronJob(jobName);
-  return res.status(204).send();
 }
 
 export const stopJob = async (req, res) => {
@@ -47,8 +47,7 @@ export const startAllJobs = async (req, res) => {
 
 export const stopAllJobs = async (req, res) => {
   try {
-    await schedule.gracefulShutdown();
-    await cleanupJobs();
+    await Promise.all([schedule.gracefulShutdown(), cleanupJobs()]);
     LOGGER.info(`Stopped all CronJobs`);
     res.status(204).send();
   } catch(err) {

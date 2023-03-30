@@ -6,7 +6,6 @@ import BaseModel from "../models/BaseModel.js";
 import LOGGER from "../utils/logger.js";
 import { JobInterchanger } from './jobInterchanger.js';
 import schedule from 'node-schedule';
-import { connectedToDB } from '../config/db.js';
 
 
 export const createAndSaveJob = async (jobName) => {
@@ -50,18 +49,11 @@ export const updateCronJob = async (jobName) => {
 }
 
 export const triggerCronJob = async (jobName) => {
-  if (jobIsActive(jobName)) {
-    const cronJob = await BaseModel.getByKeyAndValue('cronJob', 'jobName', jobName);
-    if (!cronJob) {
-      LOGGER.warn(`Job ${jobName} needs a refresh. It is started but has no Mongo Document.`);
-      return false;
-    }
+  if (findJobFromJobList(jobName)) {
     LOGGER.info(`Triggering CronJob ${jobName}`);
-    await JobInterchanger.getExecutionFunction(jobName);
-    cronJob.fireTimes.previousFire = new Date().toISOString();
-    await cronJob.save();
+    await JobInterchanger.executeJob(jobName);
   } else {
-    LOGGER.warn(`Could not trigger Job ${jobName} because job is not currently scheduled`);
+    LOGGER.warn(`Could not trigger ${jobName} because it is not an available job.`);
   }
 }
 
@@ -81,8 +73,7 @@ const scheduleJob = async (cronJob) => {
   try {
     const jobName = cronJob?.jobName;
     schedule.scheduleJob(jobName, cronJob?.interval?.expression, async () => {
-      await JobInterchanger.getExecutionFunction(jobName);
-      await updateCronJob(jobName);
+      await Promise.all([JobInterchanger.executeJob(jobName), updateCronJob(jobName)]);
     })
     return jobIsActive(jobName);
   } catch(err) {
@@ -162,11 +153,10 @@ const updateFireTimes = async (cronJob, options) => {
 
 export const cleanupJobs = async () => {
   try {
-    if (connectedToDB()) {
-      await BaseModel.deleteAllFromCollection('cronJob');
-    }
+    LOGGER.debug(`Cleaning up Jobs`);
+    await BaseModel.deleteAllFromCollection('cronJob');
   } catch(err) {
-    LOGGER.error(`Unable to delete All Cron Job from Mongo: \n${err}`);
+    LOGGER.error(`Unable to delete All Cron Jobs from Mongo: \n${err}`);
   }
 }
 

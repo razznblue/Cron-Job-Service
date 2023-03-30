@@ -8,7 +8,7 @@ const { JOBS } = Constants
 
 export const JobInterchanger = {
 
-  async getExecutionFunction(jobName) {
+  async executeJob(jobName) {
     if (!jobName) {
       LOGGER.warn(`Could not execute invalid jobName ${jobName} in JobInterchanger`);
       return () => {};

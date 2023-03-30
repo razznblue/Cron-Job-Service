@@ -16,7 +16,7 @@ const options = {
 
 const swaggerSpec = swaggerJSDoc(options);
 
-const swaggerDocs = (app) => {
+const setUpSwagger = (app) => {
 
   const docsPath = '/api-docs';
   // Swagger Page
@@ -31,4 +31,4 @@ const swaggerDocs = (app) => {
   LOGGER.info(`Docs available at ${process.env.BASE_URL}${docsPath}`);
 }
 
-export default swaggerDocs;
+export default setUpSwagger;

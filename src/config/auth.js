@@ -17,7 +17,7 @@ export const sessionAuth = (req, res, next) => {
     }
   } catch {
     LOGGER.error(`Unknown error occured while performing sessionAuth`);
-    res.status(500).send(`Unknowen Error Occured`);
+    res.status(500).send(`Unknown Error Occured`);
   }
 }
 
