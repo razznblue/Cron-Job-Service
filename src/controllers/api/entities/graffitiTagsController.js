@@ -2,17 +2,32 @@ import BaseModel from "../../../models/BaseModel.js";
 
 
 export const getAllGraffitiTags = async (req, res) => {
-  const jsrTags = await getJSRTags();
-  const jsrfTags = await getJSRFTags();
-  res.send([...jsrTags, ...jsrfTags]);
+  try {
+    const jsrTags = await getJSRTags();
+    const jsrfTags = await getJSRFTags();
+    res.send([...jsrTags, ...jsrfTags]);
+  } catch(err) {
+    LOGGER.error(`Error getting ALL GraffitiTags: \n${err}`);
+    res.status(500).send('Unknown Error');
+  }
 }
 
 export const getJSRGraffitiTags = async (req, res) => {
-  res.send(await getJSRTags());
+  try {
+    res.send(await getJSRTags());
+  } catch(err) {
+    LOGGER.error(`Error getting ALL GraffitiTags: \n${err}`);
+    res.status(500).send('Unknown Error');
+  }
 }
 
 export const getJSRFGraffitiTags = async (req, res) => {
-  res.send(await getJSRFTags());
+  try {
+    res.send(await getJSRFTags());
+  } catch(err) {
+    LOGGER.error(`Error getting ALL GraffitiTags: \n${err}`);
+    res.status(500).send('Unknown Error');
+  }
 }
 
 const getJSRTags = async () => {
