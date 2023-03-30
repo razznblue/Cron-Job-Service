@@ -25,6 +25,13 @@ const App = {
   init(app) {
     swaggerDocs(app);
     cleanupJobs();
+    (async () => {
+      setInterval(async () => {
+        const baseUrl = process.env.BASE_URL;
+        const res = await axios.get(`${baseUrl}/health`);
+        console.log(`App Ping - ${baseUrl}. Status: ${res.data.message}`);
+      }, 600000);
+    })();
   },
 
   setMiddleware(app) {
