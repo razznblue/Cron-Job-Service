@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import router from '../routes/router.js';
 
@@ -17,6 +18,7 @@ class MiddlewareManager {
     this.app.set('views', path.join(__dirname, '..', 'views'));
     this.app.set('view engine', 'ejs');
   
+    this.app.use(cors());
     this.app.use(express.static(path.join(__dirname, '..', 'public')));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
