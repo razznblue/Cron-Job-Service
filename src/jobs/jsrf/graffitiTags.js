@@ -7,7 +7,7 @@ import BaseModel from '../../models/BaseModel.js';
 import LOGGER from '../../utils/logger.js';
 import { getCloudFiles } from '../../utils/googlecloud.js';
 
-const jobExecutionTimeName = 'CronJob | graffiti-tags';
+const jobExecutionTimeName = 'CronJob | jsrf-graffiti-tags';
 const { URL: { WIKI_BASE_URL, GRAFFITI_TAGS_PATH } } = Constants;
 const { JOBS: { JSRF_GRAFFITI_TAGS } } = Constants;
 
@@ -39,8 +39,8 @@ export const scrapeGraffitiTags = async () => {
     const dataToSave = {
       number: $(tds[0]).text().trim(),
       tagName: $(tds[1]).text().trim(),
-      level: $(tds[2]).text().trim() !== 'N/A' ? $(tds[2]).text().trim() : null,
-      location: $(tds[3]).text().trim() !== 'N/A' ? $(tds[3]).text().trim() : null,
+      level: $(tds[2]).text().trim() !== 'N/A' ? $(tds[2]).text().trim() : undefined,
+      location: $(tds[3]).text().trim() !== 'N/A' ? $(tds[3]).text().trim() : undefined,
       size: $(tds[4]).text().trim(),
       wikiImageUrl: getWikiImageUrl($, tds)
     }
@@ -48,7 +48,7 @@ export const scrapeGraffitiTags = async () => {
   }
   const users = await Promise.all(promises);
   console.timeEnd(jobExecutionTimeName);
-  LOGGER.info(`Finished Graffiti-Tags Job. Created ${users.length} new documents.`);
+  LOGGER.info(`Finished JSRF Graffiti-Tags Job. Created ${users.length} new documents.`);
 }
 
 const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
@@ -64,9 +64,9 @@ const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
       graffitiTag.wikiImageUrl = wikiImageUrl;
       setImgUrl(graffitiTag, cloudFiles);
       await graffitiTag.save();
-      LOGGER.debug(`Saved new GraffitiTag ${number} : ${tagName}`);
+      LOGGER.debug(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
     } else {
-      LOGGER.debug(`Found existing GraffitiTag in DB ${number}`);
+      LOGGER.debug(`Found existing JSRF GraffitiTag in DB ${number}`);
     }
 }
 

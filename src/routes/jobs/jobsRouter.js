@@ -1,5 +1,4 @@
 import express from 'express';
-import graffitiTags from './graffitiTagJobRouter.js';
 import { getActiveJobs, getAvailableJobs, createJob, triggerJob, stopJob, startAllJobs, stopAllJobs } from '../../controllers/jobsController.js';
 
 

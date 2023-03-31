@@ -6,7 +6,6 @@ dotenv.config();
 import MiddlewareManager from './managers/MiddlewareManager.js';
 import setUpSwagger from './utils/swagger.js';
 import LOGGER from './utils/logger.js';
-import { cleanupJobs } from './jobs/jobsUtil.js';
 
 
 const PORT = process.env.PORT;
@@ -24,13 +23,6 @@ const App = {
     LOGGER.info(`JetSetRadio-API listening on Port ${PORT}`);
     const baseUrl = process.env.BASE_URL;
     setUpSwagger(app);
-    
-    //On startup, delete any remaining CronJob records in the DB
-    const delay = process.env.NODE_ENV === 'production' ? 120000 : 10000;
-    setTimeout(async () => {
-      const {data: {dbState}} = await axios.get(`${baseUrl}/health`);
-      dbState.core === 'connected' ? cleanupJobs() : LOGGER.warn(`SKipped cleaning up CronJobs : CORE_DB connection not established`);
-    }, delay);
 
     // Ping App every 10 minutes
     setInterval(async () => {

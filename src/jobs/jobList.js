@@ -21,7 +21,15 @@ const CRON_JOBS = [
       name: 'everySundayAtMidnight',
       expression: intervals['everySundayAtMidnight']
     },
-    timezone: 'Asia/Saigon'
+    timezone: 'America/Chicago'
+  },
+  {
+    jobName: JOBS.JSR_GRAFFITI_TAGS,
+    interval: {
+      name: 'everySundayAtMidnight',
+      expression: intervals['everySundayAtMidnight']
+    },
+    timezone: 'America/Chicago'
   }
 ]
 
