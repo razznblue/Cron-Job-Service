@@ -11,7 +11,8 @@ const options = {
       version: process.env.npm_package_version,
     },
   },
-  apis: ['./src/routes/router.js', './src/routes/api/entities/graffitiTagRouter.js'],
+  apis: ['./src/routes/router.js', './src/routes/api/entities/gameRouter.js', 
+    './src/routes/api/entities/graffitiTagRouter.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

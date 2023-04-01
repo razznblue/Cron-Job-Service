@@ -22,7 +22,7 @@ const sizesMap = {
 }
 
 const jobExecutionTimeName = 'CronJob | jsr-graffiti-tags';
-const { JOBS: { JSR_GRAFFITI_TAGS } } = Constants;
+const { JOBS: { JSR_GRAFFITI_TAGS }, GAMES: { JET_SET_RADIO } } = Constants;
 
 export const processJSRGraffitiTags = async () => {
   LOGGER.info(`Starting ${JSR_GRAFFITI_TAGS} Cron Job`);
@@ -58,6 +58,7 @@ export const processJSRGraffitiTags = async () => {
           graffitiTag.tagName = tagName;
           graffitiTag.tagSubName = tagSubName;
           graffitiTag.size = size;
+          graffitiTag.gameId = await BaseModel.getGameId(JET_SET_RADIO);
           graffitiTag.imageUrl = imageUrl;
 
           promises.push(saveGraffitiTag(graffitiTag));

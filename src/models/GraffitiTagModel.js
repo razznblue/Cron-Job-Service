@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { jsrConnection, jsrfConnection } from '../config/db.js';
 
+
 const collectionName = "GraffitiTag";
 const jsrfGraffitiTagSchema = new mongoose.Schema (
   {
@@ -11,7 +12,7 @@ const jsrfGraffitiTagSchema = new mongoose.Schema (
     size: { type: String },
     wikiImageUrl: { type: String },
     imageUrl: { type: String },
-    game: { type: String, default: 'JSRF' }
+    gameId: { type: mongoose.Types.ObjectId, ref: 'Game' }
   }, { timestamps: true, versionKey: false, collection: collectionName }
 );
 
@@ -25,7 +26,7 @@ const jsrGraffitiTagModel = new mongoose.Schema (
     // location: { type: String }, 
     size: { type: String }, 
     imageUrl: { type: String },
-    game: { type: String, default: 'JSR' }
+    gameId: { type: mongoose.Types.ObjectId, ref: 'Game' }
   }, { timestamps: true, versionKey: false, collection: collectionName }
 )
 

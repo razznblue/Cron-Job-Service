@@ -9,7 +9,7 @@ import { getCloudFiles } from '../../utils/googlecloud.js';
 
 const jobExecutionTimeName = 'CronJob | jsrf-graffiti-tags';
 const { URL: { WIKI_BASE_URL, GRAFFITI_TAGS_PATH } } = Constants;
-const { JOBS: { JSRF_GRAFFITI_TAGS } } = Constants;
+const { JOBS: { JSRF_GRAFFITI_TAGS }, GAMES: { JET_SET_RADIO_FUTURE } } = Constants;
 
 /*
    - Scrapes the Graffiti-Tags page on the wiki and
@@ -61,8 +61,10 @@ const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
       graffitiTag.level = level;
       graffitiTag.location = location;
       graffitiTag.size = size;
+      graffitiTag.gameId = await BaseModel.getGameId(JET_SET_RADIO_FUTURE);
       graffitiTag.wikiImageUrl = wikiImageUrl;
       setImgUrl(graffitiTag, cloudFiles);
+      console.log(graffitiTag)
       await graffitiTag.save();
       LOGGER.debug(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
     } else {

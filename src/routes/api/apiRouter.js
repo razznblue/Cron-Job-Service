@@ -2,10 +2,12 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import games from './entities/gameRouter.js';
 import graffitiTags from './entities/graffitiTagRouter.js';
 
 
 const api = express.Router();
+api.use('/games', games);
 api.use('/graffiti-tags', graffitiTags);
 
 api.get('/characters', (req, res) => {

@@ -13,7 +13,8 @@ const CRON_JOBS = [
     interval: {
       name: 'everyMinute',
       expression: intervals['everyMinute']
-    }
+    },
+    timezone: 'America/Chicago'
   },
   {
     jobName: JOBS.JSRF_GRAFFITI_TAGS,
@@ -21,7 +22,6 @@ const CRON_JOBS = [
       name: 'everySundayAtMidnight',
       expression: intervals['everySundayAtMidnight']
     },
-    timezone: 'America/Chicago'
   },
   {
     jobName: JOBS.JSR_GRAFFITI_TAGS,
@@ -29,7 +29,13 @@ const CRON_JOBS = [
       name: 'everySundayAtMidnight',
       expression: intervals['everySundayAtMidnight']
     },
-    timezone: 'America/Chicago'
+  },
+  {
+    jobName: JOBS.GAMES,
+    interval: {
+      name: 'everySundayAtMidnight',
+      expression: intervals['everySundayAtMidnight']
+    },
   }
 ]
 

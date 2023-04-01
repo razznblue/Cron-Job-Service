@@ -3,6 +3,7 @@ import Constants from "../constants/Constants.js";
 import { scrapeGraffitiTags } from "./jsrf/graffitiTags.js";
 import { executeTestJob } from "./test/testJob.js";
 import { processJSRGraffitiTags } from "./jsr/graffitiTags.js";
+import { processGames } from "./games/gamesJob.js";
 
 
 const { JOBS } = Constants
@@ -21,6 +22,8 @@ export const JobInterchanger = {
         return await jobActions.processJSRFGraffitiTags();
       case JOBS.JSR_GRAFFITI_TAGS:
         return await jobActions.processJSRGraffitiTags();
+      case JOBS.GAMES:
+        return await jobActions.processGames();
     }
     return () => {};
   }
@@ -30,5 +33,6 @@ export const JobInterchanger = {
 const jobActions = {
   doTestJob: () => executeTestJob(),
   processJSRFGraffitiTags: async () => await scrapeGraffitiTags(),
-  processJSRGraffitiTags: async () => await processJSRGraffitiTags()
+  processJSRGraffitiTags: async () => await processJSRGraffitiTags(),
+  processGames: async () => await processGames()
 }

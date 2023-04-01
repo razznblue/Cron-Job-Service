@@ -1,4 +1,5 @@
 import { GraffitiTagJSR, GraffitiTagJSRF } from "./GraffitiTagModel.js";
+import { Game } from "./GameModel.js";
 import { CronJob } from "./CronJobModel.js";
 import { Admin } from "./AdminModel.js";
 import LOGGER from "../utils/logger.js";
@@ -9,6 +10,7 @@ const models = {
   graffitiTagJsrf: GraffitiTagJSRF,
   cronJob: CronJob,
   admin: Admin,
+  game: Game
 };
 
 const BaseModel = {
@@ -64,6 +66,15 @@ const BaseModel = {
   async deleteAllFromCollection(modelName) {
     try {
       return await models[modelName].deleteMany({});
+    } catch(err) {
+      LOGGER.error(`Error removing ALL documents from ${modelName} collection. \n${err}`);
+    }
+  },
+
+  async getGameId(gameName) {
+    try {
+      const game = await models['game'].findOne({ name: gameName }, '_id');
+      return game._id;
     } catch(err) {
       LOGGER.error(`Error removing ALL documents from ${modelName} collection. \n${err}`);
     }
