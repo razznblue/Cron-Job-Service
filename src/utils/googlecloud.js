@@ -6,10 +6,17 @@ dotenv.config();
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const credentials = path.join(__dirname, '..', '..', 'credentials.json');
-const storage = new Storage({ keyFilename: credentials });
-const bucket = storage.bucket(process.env.CLOUD_BUCKET_NAME);
 import LOGGER from "./logger.js";
+
+const getBucket = () => {
+  try {
+    const credentials = path.join(__dirname, '..', '..', 'credentials.json');
+    const storage = new Storage({ keyFilename: credentials });
+    return storage.bucket(process.env.CLOUD_BUCKET_NAME)
+  } catch(err) {
+    LOGGER.warn(`Unable to get GCS Bucket. Is the bucket being set in the .env file? \n${err}`);
+  }
+}
 
 export const getListFiles = async (req, res) => {
   try {
@@ -25,7 +32,7 @@ export const getListFiles = async (req, res) => {
 
 export const getCloudFiles = async (prefix, delimiter) => {
   try {
-    const [files] = await bucket.getFiles({
+    const [files] = await getBucket().getFiles({
       prefix: prefix, // 'jsrf/graffiti-tags/'
       delimiter: delimiter  // '/'
     });
@@ -40,6 +47,6 @@ export const getCloudFiles = async (prefix, delimiter) => {
 
     return fileInfos;
   } catch(err) {
-    LOGGER.error(JSON.stringify.err);
+    LOGGER.error(`Failed to retrieve files from Cloud Bucket \n${err}`);
   }
 }

@@ -1,22 +1,12 @@
 
-# <img src="https://storage.googleapis.com/jetsetradio-api-core/images/jsr-logo.png" width=6% />  JetSetRadio-API
+# <img src="https://storage.googleapis.com/jetsetradio-api-core/images/jsr-logo.png" width=6% />  JetSetRadio-API Admin
 
-Providing Data from the one and only Jet Set Radio Franchise! This API includes data from both JSR and JSRF.
+A set of Admin Tools to manage the JetSetRadio-API
 
 
 ## Overview
 This is an open-source software free for anyone to use. I do NOT claim to own.
  *NOTE: I do NOT own JetSetRadio, JetSetRadioFuture, or any entity falling under the JetSetRadio franchise. I do not own the name Jet-Set-Radio-API. I do not own any of the content provided by this API.
-
-
-## Endpoints and DOCS
- - View all endpoints on the [Endpoints Page]() (Coming Soon)
- - For developer documentation, see the [Swagger Docs](https://jetsetradio-api.onrender.com/api-docs)
-
-
-## Top Features
- - Automatic API data ingestion from data providers
- - CronJob scheduling
 
 
 ## Integrations
