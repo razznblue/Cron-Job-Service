@@ -24,6 +24,8 @@ You can also submit an issue if you find something wrong, have questions, or wan
 
 Feel free to post anything under Issues even if it is a question or comment. If you see something incorrect from any of the endpoints, that is definitely something you can post about.
 
+You may see a warning 'Unable to get GCS Bucket' while starting up the app. You can get rid of this warning by setting up a service account to connect to this app. Plug in your bucket name to the .env file and the error should disappear. However, this step is not required to develop throughout the rest of the app!
+
 ## Author
  - RazzNBlue
 
