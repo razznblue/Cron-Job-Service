@@ -2,7 +2,6 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import api from './api/apiRouter.js';
 import jobs from './jobs/jobsRouter.js';
 import admin from './adminRouter.js';
 import HealthCheckManager from '../managers/HealthCheckManager.js';
@@ -12,7 +11,6 @@ import { sessionAuth } from '../config/auth.js';
 
 const router = express.Router();
 
-router.use('/v1/api', api); 
 router.use('/jobs', sessionAuth, jobs); 
 router.use('/admin', admin);
 
