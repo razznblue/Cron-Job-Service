@@ -64,7 +64,6 @@ const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
       graffitiTag.gameId = await BaseModel.getGameId(JET_SET_RADIO_FUTURE);
       graffitiTag.wikiImageUrl = wikiImageUrl;
       setImgUrl(graffitiTag, cloudFiles);
-      console.log(graffitiTag)
       await graffitiTag.save();
       LOGGER.debug(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
     } else {

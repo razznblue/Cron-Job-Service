@@ -6,10 +6,10 @@ import { validateNewAvailableJob } from '../utils/validation/ValidatorUtil.js';
 const jobs = express.Router();
 
 // Available Jobs
-jobs.get('/', async (req, res) => await getAvailableJobs(req, res));
-jobs.post('/', validateNewAvailableJob(), async (req, res) => await createAvailableJob(req, res));
-jobs.get('/:id', async (req, res) => await getAvailableJob(req, res));
-jobs.patch('/:id', async (req, res) => await updateAvailableJob(req, res));
+jobs.get('/available', async (req, res) => await getAvailableJobs(req, res));
+jobs.post('/available', validateNewAvailableJob(), async (req, res) => await createAvailableJob(req, res));
+jobs.get('/available:id', async (req, res) => await getAvailableJob(req, res));
+jobs.patch('/available/:id', async (req, res) => await updateAvailableJob(req, res));
 
 // Cron Jobs
 jobs.get('/active', async (req, res) => await getActiveJobs(req, res));

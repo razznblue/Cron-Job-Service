@@ -27,7 +27,7 @@ const App = {
     // Ping App every 10 minutes
     setInterval(async () => {
       const res = await axios.get(`${baseUrl}/health`);
-      console.log(`App Ping - ${baseUrl}. Status: ${res.data.message}`);
+      LOGGER.info(`App Ping - ${baseUrl}. Status: ${res.data.message}`);
     }, 600000);
   },
 
