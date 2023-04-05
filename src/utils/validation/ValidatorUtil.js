@@ -31,3 +31,16 @@ export const validatePassword = async (hashedPassword, pass) => {
     LOGGER.warn(`Error validating Admin password ${err}`);
   }
 }
+
+export const validateNewAvailableJob = () => {
+  return [
+    body('jobName')
+    .exists()
+    .withMessage('jobName is missing')
+    .trim(),
+    body('interval')
+      .exists()
+      .withMessage('interval is required')
+      .trim()
+  ];
+}

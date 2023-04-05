@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import jobs from './jobs/jobsRouter.js';
+import jobs from './jobsRouter.js';
 import admin from './adminRouter.js';
 import HealthCheckManager from '../managers/HealthCheckManager.js';
 import LOGGER from '../utils/logger.js';

@@ -1,10 +1,13 @@
 import express from 'express';
-import { getActiveJobs, getAvailableJobs, createJob, triggerJob, stopJob, startAllJobs, stopAllJobs } from '../../controllers/jobsController.js';
+import { getActiveJobs, getAvailableJobs, createAvailableJob, createJob, triggerJob, stopJob, startAllJobs, stopAllJobs } from '../controllers/jobsController.js';
+import { validateNewAvailableJob } from '../utils/validation/ValidatorUtil.js';
 
 
 const jobs = express.Router();
 
-jobs.get('/', (req, res) => getAvailableJobs(req, res));
+jobs.get('/', async (req, res) => await getAvailableJobs(req, res));
+jobs.post('/', validateNewAvailableJob(), async (req, res) => await createAvailableJob(req, res));
+
 jobs.get('/active', async (req, res) => await getActiveJobs(req, res));
 jobs.post('/:jobName', async (req, res) => await createJob(req, res));
 jobs.get('/:jobName/trigger', async (req, res) => await triggerJob(req, res)); // When you trigger, the job should already be started

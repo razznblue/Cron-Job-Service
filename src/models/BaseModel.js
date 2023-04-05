@@ -1,6 +1,7 @@
 import { GraffitiTagJSR, GraffitiTagJSRF } from "./GraffitiTagModel.js";
-import { Game } from "./GameModel.js";
 import { CronJob } from "./CronJobModel.js";
+import { AvailableCronJob } from "./AvailableCronJob.js";
+import { Game } from "./GameModel.js";
 import { Admin } from "./AdminModel.js";
 import LOGGER from "../utils/logger.js";
 
@@ -9,6 +10,7 @@ const models = {
   graffitiTagJsr: GraffitiTagJSR,
   graffitiTagJsrf: GraffitiTagJSRF,
   cronJob: CronJob,
+  availableCronJob: AvailableCronJob,
   admin: Admin,
   game: Game
 };
