@@ -48,7 +48,7 @@ export const scrapeGraffitiTags = async () => {
   }
   const users = await Promise.all(promises);
   console.timeEnd(jobExecutionTimeName);
-  LOGGER.info(`Finished JSRF Graffiti-Tags Job. Created ${users.length} new documents.`);
+  LOGGER.info(`Finished JSRF Graffiti-Tags Job. Processed ${users.length} new documents.`);
 }
 
 const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {

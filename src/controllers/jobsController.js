@@ -1,11 +1,69 @@
-import CRON_JOBS from "../jobs/jobList.js";
 import LOGGER from "../utils/logger.js"; 
 import schedule from 'node-schedule';
 import { createAndSaveJob, getActiveJobsList, triggerCronJob, stopCronJob, getAllAvailableJobNames, cleanupJobs } from "../jobs/jobsUtil.js";
+import BaseModel from "../models/BaseModel.js";
+import getCronExpression from '../jobs/intervals.js';
+import { AvailableCronJob } from "../models/AvailableCronJob.js";
 
 
-export const getAvailableJobs = (req, res) => {
-  return res.send(CRON_JOBS);
+export const getAvailableJobs = async (req, res) => {
+  res.send(await BaseModel.getAllDocuments('availableCronJob'));
+}
+
+export const getAvailableJob = async (req, res) => {
+  res.send(await BaseModel.getById('availableCronJob', req?.params?.id));
+}
+
+export const createAvailableJob = async (req, res) => {
+  if (req?.body) {
+    const jobName = req?.body?.jobName;
+    const exists = await BaseModel.existsByKeyAndValue('availableCronJob', 'jobName', jobName);
+    if (!exists) {
+      const intervalName = req?.body?.interval;
+      const cronExpression = getCronExpression(intervalName);
+      if (cronExpression) {
+        const availableCronJob = new AvailableCronJob();
+        availableCronJob.jobName = req?.body?.jobName;
+        availableCronJob.interval = { name: intervalName, expression: cronExpression };
+        if (req?.body?.timezone) {
+          availableCronJob.timezone = req?.body?.timezone;
+        }
+        await availableCronJob.save();
+        LOGGER.info(`Saved new AvailableCronJob with name ${intervalName}`);
+        res.send(availableCronJob);
+      } else {
+        res.status(500).send('Invalid interval');
+      }
+    } else {
+      res.status(500).send('JobName taken. Try Another');
+    }
+  }
+}
+
+export const updateAvailableJob = async (req, res) => {
+  let updated = false;
+  const id = req?.params?.id;
+  if (req?.body && id) {
+    const job = await BaseModel.getById('availableCronJob', id);
+    if (!job) {
+      return res.status(404).send(`Job not found`);
+    }
+    if (req?.body?.interval) {
+      const cronExpression = getCronExpression(req?.body?.interval);
+      if (cronExpression) {
+        job.interval = { name: req?.body?.interval, expression: cronExpression };
+      }
+    }
+    if (req?.body?.timezone) {
+      job.timezone = req?.body?.timezone;
+    }
+    await job.save();
+    updated = true;
+    LOGGER.info(`Updated AvailableCronJob ${id}`);
+    res.send({job, "updated": updated});
+  } else {
+    res.status(500).send(`Invalid ID or unknown error occurred`);
+  }
 }
 
 export const getActiveJobs = async (req, res) => {
@@ -33,7 +91,7 @@ export const stopJob = async (req, res) => {
 }
 
 export const startAllJobs = async (req, res) => {
-  const jobs = getAllAvailableJobNames(); 
+  const jobs = await getAllAvailableJobNames(); 
   if (jobs.length > 0) {
     for (const job of jobs) {
       await createAndSaveJob(job);

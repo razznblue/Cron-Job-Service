@@ -1,6 +1,5 @@
 import parser from 'cron-parser';
 
-import CRON_JOBS from "./jobList.js";
 import { CronJob } from "../models/CronJobModel.js";
 import BaseModel from "../models/BaseModel.js";
 import LOGGER from "../utils/logger.js";
@@ -11,7 +10,7 @@ import schedule from 'node-schedule';
 export const createAndSaveJob = async (jobName) => {
 
   if (!jobIsActive(jobName)) {
-    const job = findJobFromJobList(jobName);
+    const job = await findJobFromJobList(jobName);
     if (job) {
       const cronJob = new CronJob();
       cronJob.jobName = jobName;
@@ -49,7 +48,7 @@ export const updateCronJob = async (jobName) => {
 }
 
 export const triggerCronJob = async (jobName) => {
-  if (findJobFromJobList(jobName)) {
+  if (await findJobFromJobList(jobName)) {
     LOGGER.info(`Triggering CronJob ${jobName}`);
     await JobInterchanger.executeJob(jobName);
   } else {
@@ -112,8 +111,9 @@ const removeJobFromActiveList = (jobName) => {
 
 }
 
-const findJobFromJobList = (jobName) => {
-  for (const job of CRON_JOBS) {
+const findJobFromJobList = async (jobName) => {
+  const availableJobs = await BaseModel.getAllDocuments('availableCronJob');
+  for (const job of availableJobs) {
     if (jobName === job.jobName) {
       return job;
     }
@@ -160,9 +160,10 @@ export const cleanupJobs = async () => {
   }
 }
 
-export const getAllAvailableJobNames = () => {
+export const getAllAvailableJobNames = async () => {
   const names = [];
-  for (const job of CRON_JOBS) {
+  const availableJobs = await BaseModel.getAllDocuments('availableCronJob');
+  for (const job of availableJobs) {
     names.push(job.jobName);
   }
   return names;
