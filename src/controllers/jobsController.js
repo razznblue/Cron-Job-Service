@@ -7,8 +7,11 @@ import { AvailableCronJob } from "../models/AvailableCronJob.js";
 
 
 export const getAvailableJobs = async (req, res) => {
-  const activeJobs = await BaseModel.getAllDocuments('availableCronJob');
-  return res.send(activeJobs);
+  res.send(await BaseModel.getAllDocuments('availableCronJob'));
+}
+
+export const getAvailableJob = async (req, res) => {
+  res.send(await BaseModel.getById('availableCronJob', req?.params?.id));
 }
 
 export const createAvailableJob = async (req, res) => {
@@ -34,6 +37,32 @@ export const createAvailableJob = async (req, res) => {
     } else {
       res.status(500).send('JobName taken. Try Another');
     }
+  }
+}
+
+export const updateAvailableJob = async (req, res) => {
+  let updated = false;
+  const id = req?.params?.id;
+  if (req?.body && id) {
+    const job = await BaseModel.getById('availableCronJob', id);
+    if (!job) {
+      return res.status(404).send(`Job not found`);
+    }
+    if (req?.body?.interval) {
+      const cronExpression = getCronExpression(req?.body?.interval);
+      if (cronExpression) {
+        job.interval = { name: req?.body?.interval, expression: cronExpression };
+      }
+    }
+    if (req?.body?.timezone) {
+      job.timezone = req?.body?.timezone;
+    }
+    await job.save();
+    updated = true;
+    LOGGER.info(`Updated AvailableCronJob ${id}`);
+    res.send({job, "updated": updated});
+  } else {
+    res.status(500).send(`Invalid ID or unknown error occurred`);
   }
 }
 
