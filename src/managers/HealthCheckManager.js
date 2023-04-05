@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import { coreConnection, jsrConnection, jsrfConnection } from "../config/db.js";
-import { getActiveJobsList } from '../jobs/jobsUtil.js';
 
 class HealthCheckManager {
   constructor() {
@@ -12,7 +11,6 @@ class HealthCheckManager {
       jsr: mongoose.STATES[jsrConnection.readyState],
       jsrf: mongoose.STATES[jsrfConnection.readyState]
     };
-    this.activeCronJobs = getActiveJobsList();
     this.timestamp = Date.now();
     this.nodeVersion = process.version;
   }

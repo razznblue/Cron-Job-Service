@@ -35,6 +35,7 @@ export const processJSRGraffitiTags = async () => {
 
   const figures = $('.center');
   if (figures) {
+    LOGGER.info(`Processing ${figures.length} jsr graffiti records`);
     const promises = [];
     for (const figure of figures) {
       const img = $(figure).find('img');
@@ -45,9 +46,8 @@ export const processJSRGraffitiTags = async () => {
         const number = getGraffitiNumber(imageUrl);
         const { tagName, tagSubName } = getGraffitiNames($, figcaption);
 
-        const exists = await Promise.all([BaseModel.existsByKeyAndValue(modelName, 'number', number),
-          BaseModel.existsByKeyAndValue(modelName, 'tagSubName', tagSubName)]);
-        if (!exists.every(v => v === true)) {
+        const imgUrlExists = await BaseModel.existsByKeyAndValue(modelName, 'imageUrl', imageUrl);
+        if (!imgUrlExists) {
           const graffitiTag = new GraffitiTagJSR();
           const height = img.attr('width');
           const width = img.attr('height');
@@ -63,20 +63,20 @@ export const processJSRGraffitiTags = async () => {
 
           promises.push(saveGraffitiTag(graffitiTag));
         } else {
-          LOGGER.info(`Found existing JSR GraffitiTag in DB ${number}`);
+          LOGGER.warn(`Found existing JSR Tag with img ${imageUrl}`);
         }
       }
     }
     const docs = await Promise.all(promises);
     console.timeEnd(jobExecutionTimeName);
-    LOGGER.info(`Finished JSR Graffiti-Tags Job. Processed ${docs.length} new documents.`);
+    LOGGER.info(`Finished JSR Graffiti-Tags Job. Saved ${docs.length} new documents.`);
   }
 
 }
 
 const saveGraffitiTag = async (graffitiTag) => {
   await graffitiTag.save();
-  LOGGER.info(`Saved new JSRF GraffitiTag ${graffitiTag.number} : ${graffitiTag.tagName}`);
+  LOGGER.info(`Saved new JSR GraffitiTag ${graffitiTag.number} : ${graffitiTag.tagName}`);
 }
 
 const getGraffitiNames = ($, figcaption) => {

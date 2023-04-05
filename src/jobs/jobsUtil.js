@@ -7,10 +7,36 @@ import { JobInterchanger } from './jobInterchanger.js';
 import schedule from 'node-schedule';
 
 
+export const getActiveJobsList = async () => {
+  const cronJobs = [];
+  const activeJobs = schedule.scheduledJobs;
+  const keys = Object.keys(activeJobs);
+  for (const key of keys) {
+    const jobName = activeJobs[key].name;
+    const cronJob = await BaseModel.getByKeyAndValue('cronJob', 'jobName', jobName);
+    if (!cronJob) {
+      LOGGER.warn(`Could not find DB record of active cron job ${jobName}`);
+    } else {
+      cronJobs.push(cronJob);
+    }
+  }
+  return cronJobs;
+}
+
+const jobIsActive = async (jobName) => {
+  const activeJobs = await getActiveJobsList();
+  for (const activeJob of activeJobs) {
+    if (activeJob.jobName === jobName) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export const createAndSaveJob = async (jobName) => {
 
-  if (!jobIsActive(jobName)) {
-    const job = await findJobFromJobList(jobName);
+  if (!await jobIsActive(jobName)) {
+    const job = await findJobFromAvailableList(jobName);
     if (job) {
       const cronJob = new CronJob();
       cronJob.jobName = jobName;
@@ -48,16 +74,21 @@ export const updateCronJob = async (jobName) => {
 }
 
 export const triggerCronJob = async (jobName) => {
-  if (await findJobFromJobList(jobName)) {
+  if (await findJobFromAvailableList(jobName)) {
     LOGGER.info(`Triggering CronJob ${jobName}`);
     await JobInterchanger.executeJob(jobName);
+    const mongoJobRecord = await BaseModel.getByKeyAndValue('cronJob', 'jobName', jobName);
+    if (mongoJobRecord) {
+      await updateFireTimes(mongoJobRecord);
+      LOGGER.info(`Updated firetimes for triggered job ${jobName}`);
+    }
   } else {
     LOGGER.warn(`Could not trigger ${jobName} because it is not an available job.`);
   }
 }
 
 export const stopCronJob = async (jobName) => {
-  if (jobIsActive(jobName)) {
+  if (await jobIsActive(jobName)) {
     const cancelled = removeJobFromActiveList(jobName);
     if (cancelled) {
       await BaseModel.deleteSingleDocument('cronJob', 'jobName', jobName);
@@ -80,26 +111,6 @@ const scheduleJob = async (cronJob) => {
   }
 }
 
-const jobIsActive = (jobName) => {
-  const activeJobs = getActiveJobsList();
-  for (const name of activeJobs) {
-    if (name === jobName) {
-      return true;
-    }
-  }
-  return false;
-}
-
-export const getActiveJobsList = () => {
-  const jobNames = [];
-  const activeJobs = schedule.scheduledJobs;
-  const keys = Object.keys(activeJobs);
-  for (const key of keys) {
-    jobNames.push(activeJobs[key].name);
-  }
-  return jobNames;
-}
-
 const removeJobFromActiveList = (jobName) => {
   const cancelled = schedule.cancelJob(jobName);
   if (!cancelled) {
@@ -111,7 +122,7 @@ const removeJobFromActiveList = (jobName) => {
 
 }
 
-const findJobFromJobList = async (jobName) => {
+const findJobFromAvailableList = async (jobName) => {
   const availableJobs = await BaseModel.getAllDocuments('availableCronJob');
   for (const job of availableJobs) {
     if (jobName === job.jobName) {

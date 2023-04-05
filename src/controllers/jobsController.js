@@ -67,7 +67,7 @@ export const updateAvailableJob = async (req, res) => {
 }
 
 export const getActiveJobs = async (req, res) => {
-  const jobNames = getActiveJobsList();
+  const jobNames = await getActiveJobsList();
   //TODO (optional) Verify each jobName has a record in DB
   return res.send(jobNames);
 }
