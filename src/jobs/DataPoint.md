@@ -13,9 +13,9 @@ The example data point used in this guide is ```JSRF_SONGS```
 ### Creating the CronJob
 
  - Add JobName to src/constants/Constants.js file under "JOBS" <br />
-  <img src="../utils/img/constants-jobs.png" width=30% /><br />
+  <img src="../public/img/constants-jobs.png" width=30% /><br />
  -  Start up qa server, and add Job to mongo by using the [createAvailableJob](../routes/jobsRouter.js) endpoint(```line 10```). You will need to add the cronInterval(this can be changed later). See a list of [available intervals](./intervals.js) to use. The timezone is not required. If the timezone is not specified it will default to ```America/Chicago```. Make sure the jobName matches the name in the Constants file. <br />
-  <img src="../utils/img/postman-available-job.png" width=30% /><br />
+  <img src="../public/img/postman-available-job.png" width=30% /><br />
  -  Verify your cronJob was created by running the [GetAvailableJob route](../routes/jobsRouter.js) or just check in mongo.
  - Now your CronJob is set up! But if you start it now, it won't actually do anything when it executes until we complete a few more steps.
 
@@ -26,10 +26,10 @@ The Model for each data point is a mongoose Model built off of a defined Schema.
  -  Create a new Model file for your data point at this location.
  -  Pay close attention to the collectionName as the naming convention should match others.
  -  Make sure to add the collection to the correct database.<br />
-  <img src="../utils/img/correct-database.png" width=60% /><br />
+  <img src="../public/img/correct-database.png" width=60% /><br />
 
   A LIST of available [databases](../config/db.js) to choose from.
-  <img src="../utils/img/database-list.png" width=60% /><br />
+  <img src="../public/img/database-list.png" width=60% /><br />
 
 
 
@@ -49,14 +49,14 @@ Now it's time to link the cron job fire event to our processor. The hard work is
  -  Import your processor into the [JobInterchanger](./jobInterchanger.js).
  -  Add the processor function into the JobActions object located at the bottom of the file.
  -  Set up a new switch case pointing to the new function you added as a JobAction.<br />
-  <img src="../utils/img/switch-case.png" width=40% /><br />
+  <img src="../public/img/switch-case.png" width=40% /><br />
 
 
 ### Test Data Ingestion
 
  - This will likely be the longest step because as you find bugs in your processor, you will have to go back and edit the processor and test again.
  - Test your job by [triggering it](../routes/jobsRouter.js) passing in the jobName in the params.<br/>
-  <img src="../utils/img/postman-trigger-job.png" width=40% /><br />
+  <img src="../public/img/postman-trigger-job.png" width=40% /><br />
  - Verify that the data flows correctly into mongo. Make sure to add checks to prevent any duplicates from being added when the job runs again.
  - Verify you can create, stop, and trigger the new job. As an extra layer, you can make sure your job is included when the [START_ALL](../routes/jobsRouter.js) and [STOP_ALL](../routes/jobsRouter.js) routes are fired.
 
