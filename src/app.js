@@ -10,6 +10,7 @@ import LOGGER from './utils/logger.js';
 
 const PORT = process.env.PORT;
 
+
 const App = {
 
   start() {
@@ -22,13 +23,16 @@ const App = {
   init(app) {
     LOGGER.info(`JetSetRadio-API listening on Port ${PORT}`);
     const baseUrl = process.env.BASE_URL;
+    const ping = process.env.PING;
     setUpSwagger(app);
 
     // Ping App every 10 minutes
-    setInterval(async () => {
-      const res = await axios.get(`${baseUrl}/health`);
-      LOGGER.info(`App Ping - ${baseUrl}. Status: ${res.data.message}`);
-    }, 600000);
+    if (ping === true) {
+      setInterval(async () => {
+        const res = await axios.get(`${baseUrl}/health`);
+        LOGGER.info(`App Ping - ${baseUrl}. Status: ${res.data.message}`);
+      }, 600000);
+    }
   },
 
   setMiddleware(app) {
