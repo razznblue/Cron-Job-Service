@@ -29,7 +29,7 @@ export const createAvailableJob = async (req, res) => {
           availableCronJob.timezone = req?.body?.timezone;
         }
         await availableCronJob.save();
-        LOGGER.info(`Saved new AvailableCronJob with name ${intervalName}`);
+        LOGGER.info(`Saved new AvailableCronJob with name ${jobName}`);
         res.send(availableCronJob);
       } else {
         res.status(500).send('Invalid interval');

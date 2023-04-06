@@ -1,9 +1,9 @@
 import LOGGER from "../utils/logger.js";
 import Constants from "../constants/Constants.js";
-import { scrapeGraffitiTags } from "./jsrf/graffitiTags.js";
-import { executeTestJob } from "./test/testJob.js";
-import { processJSRGraffitiTags } from "./jsr/graffitiTags.js";
-import { processGames } from "./games/gamesJob.js";
+import { scrapeGraffitiTags } from "./processors/jsrf/graffitiTags.js";
+import { executeTestJob } from "./processors/test/testJob.js";
+import { processJSRGraffitiTags } from "./processors/jsr/graffitiTags.js";
+import { processGames } from "./processors/games/gamesJob.js";
 
 
 const { JOBS } = Constants

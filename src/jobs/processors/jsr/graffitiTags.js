@@ -1,10 +1,10 @@
 import axios from "axios";
 import { load } from 'cheerio';
 
-import { GraffitiTagJSR } from "../../models/GraffitiTagModel.js";
-import Constants from "../../constants/Constants.js";
-import LOGGER from "../../utils/logger.js";
-import BaseModel from "../../models/BaseModel.js";
+import { GraffitiTagJSR } from "../../../models/GraffitiTagModel.js";
+import Constants from "../../../constants/Constants.js";
+import LOGGER from "../../../utils/logger.js";
+import BaseModel from "../../../models/BaseModel.js";
 
 const sizesMap = {
   XL: {

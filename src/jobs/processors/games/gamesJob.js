@@ -2,9 +2,9 @@ import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
-import LOGGER from '../../utils/logger.js';
-import { Game } from '../../models/GameModel.js';
-import BaseModel from '../../models/BaseModel.js';
+import LOGGER from '../../../utils/logger.js';
+import { Game } from '../../../models/GameModel.js';
+import BaseModel from '../../../models/BaseModel.js';
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
