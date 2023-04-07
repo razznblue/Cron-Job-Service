@@ -11,7 +11,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const processGames = async () => {
   LOGGER.info('Starting Games Job');
-  const pathToGamesFile = path.join(__dirname, '..', '..', 'storage', 'games.json');
+  const pathToGamesFile = path.join(__dirname, '..', '..', '..', 'storage', 'games.json');
   const games = await fs.readFile(pathToGamesFile, 'utf8');
   for (const g of JSON.parse(games.toString())) {
     const exists = await BaseModel.existsByKeyAndValue('game', 'name', g.name);

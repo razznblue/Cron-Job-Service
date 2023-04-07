@@ -3,6 +3,8 @@ import { CronJob } from "./CronJobModel.js";
 import { AvailableCronJob } from "./AvailableCronJob.js";
 import { Game } from "./GameModel.js";
 import { Admin } from "./AdminModel.js";
+import { SongJSR, SongJSRF } from "./SongModel.js";
+import { Artist } from "./ArtistModel.js";
 import LOGGER from "../utils/logger.js";
 
 
@@ -12,7 +14,10 @@ const models = {
   cronJob: CronJob,
   availableCronJob: AvailableCronJob,
   admin: Admin,
-  game: Game
+  game: Game,
+  songJsr: SongJSR,
+  songJsrf: SongJSRF,
+  artist: Artist
 };
 
 const BaseModel = {
@@ -78,7 +83,7 @@ const BaseModel = {
       const game = await models['game'].findOne({ name: gameName }, '_id');
       return game._id;
     } catch(err) {
-      LOGGER.error(`Error removing ALL documents from ${modelName} collection. \n${err}`);
+      LOGGER.error(`Error fetching gameId from name ${gameName}. \n${err}`);
     }
   }
 
