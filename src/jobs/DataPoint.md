@@ -28,7 +28,7 @@ The Model for each data point is a mongoose Model built off of a defined Schema.
  -  Make sure to add the collection to the correct database.<br />
   <img src="../public/img/correct-database.png" width=60% /><br />
 
-  A LIST of available [databases](../config/db.js) to choose from.
+  A LIST of available [databases](../config/db.js) to choose from.<br />
   <img src="../public/img/database-list.png" width=60% /><br />
 
  - Add your new model(s) to the models object in the [BaseModel](../models/BaseModel.js) file to be able to use the global functions to more easily interact with the DB.<br />
