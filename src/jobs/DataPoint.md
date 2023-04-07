@@ -31,6 +31,10 @@ The Model for each data point is a mongoose Model built off of a defined Schema.
   A LIST of available [databases](../config/db.js) to choose from.
   <img src="../public/img/database-list.png" width=60% /><br />
 
+ - Add your new model(s) to the models object in the [BaseModel](../models/BaseModel.js) file to be able to use the global functions to more easily interact with the DB.<br />
+  <img src="../public/img/models.png" width=30% /><br />
+  
+
 
 
 ### Creating the Processor 
