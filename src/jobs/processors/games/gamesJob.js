@@ -2,16 +2,16 @@ import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
-import LOGGER from '../../utils/logger.js';
-import { Game } from '../../models/GameModel.js';
-import BaseModel from '../../models/BaseModel.js';
+import LOGGER from '../../../utils/logger.js';
+import { Game } from '../../../models/GameModel.js';
+import BaseModel from '../../../models/BaseModel.js';
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const processGames = async () => {
   LOGGER.info('Starting Games Job');
-  const pathToGamesFile = path.join(__dirname, '..', '..', 'storage', 'games.json');
+  const pathToGamesFile = path.join(__dirname, '..', '..', '..', 'storage', 'games.json');
   const games = await fs.readFile(pathToGamesFile, 'utf8');
   for (const g of JSON.parse(games.toString())) {
     const exists = await BaseModel.existsByKeyAndValue('game', 'name', g.name);

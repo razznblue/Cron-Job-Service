@@ -7,7 +7,9 @@ const Constants = {
     TEST_JOB: 'TEST_JOB',
     JSRF_GRAFFITI_TAGS: 'JSRF_GRAFFITI_TAGS',
     JSR_GRAFFITI_TAGS: 'JSR_GRAFFITI_TAGS',
-    GAMES: 'GAMES'
+    JSRF_SONGS: 'JSRF_SONGS',
+    JSR_SONGS: 'JSR_SONGS',
+    GAMES: 'GAMES',
   },
   GAMES: {
     JET_SET_RADIO: 'Jet Set Radio',
