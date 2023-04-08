@@ -20,9 +20,14 @@ const getBucket = () => {
 
 export const getListFiles = async (req, res) => {
   try {
-    res.status(200).send(await getCloudFiles('jsrf/graffiti-tags/', '/'));
+    const files = await getCloudFiles('jsrf/graffiti-tags/', '/');
+    console.log(`files: ${files}`);
+    if (files === false) {
+      return res.status(500).send('Error retrieving Cloud Files. Check ogs for more details');
+    }
+    res.status(200).send(files);
   } catch (err) {
-    LOGGER.error(err);
+    LOGGER.error(`Error getting List of Cloud Files. \n${err}`);
 
     res.status(500).send({
       message: "Unable to read list of files!",
@@ -48,5 +53,6 @@ export const getCloudFiles = async (prefix, delimiter) => {
     return fileInfos;
   } catch(err) {
     LOGGER.error(`Failed to retrieve files from Cloud Bucket \n${err}`);
+    return false;
   }
 }
