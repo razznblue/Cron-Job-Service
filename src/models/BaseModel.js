@@ -54,11 +54,27 @@ const BaseModel = {
     }
   },
 
+  async getDocumentCount(modelName) {
+    try {
+      return await models[modelName].find({}).count();
+    } catch(err) {
+      LOGGER.error(`Error getting document count from ${modelName} collection. \n${err}`);
+    }
+  },
+
   async getAllDocuments(modelName) {
     try {
       return await models[modelName].find({});
     } catch(err) {
       LOGGER.error(`Error getting ALL documents from ${modelName} collection. \n${err}`);
+    }
+  },
+
+  async insertAllDocuments(modelName, documents) {
+    try {
+      return await models[modelName].insertMany(documents);
+    } catch(err) {
+      LOGGER.error(`Error inserting ALL documents into ${modelName} collection. \n${err}`);
     }
   },
 

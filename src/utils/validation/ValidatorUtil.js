@@ -10,7 +10,7 @@ export const validateAdminForm = () => {
       .isLength({ min: 4 })
       .withMessage('username must be at least 4 chars long')
       .isLength({ max: 16 })
-      .withMessage('username must be less than 12 chars long')
+      .withMessage('username must be less than 16 chars long')
       .exists()
       .withMessage('username is required')
       .trim()
@@ -19,7 +19,7 @@ export const validateAdminForm = () => {
       .isLength({ min: 5 })
       .withMessage('password must be at least 5 chars long')
       .isLength({ max: 30 })
-      .withMessage('password must be at max 30 chars long')
+      .withMessage('password must be less than 30 chars long')
       .exists(),
   ];
 }
