@@ -7,6 +7,7 @@ import admin from './adminRouter.js';
 import HealthCheckManager from '../managers/HealthCheckManager.js';
 import LOGGER from '../utils/logger.js';
 import { sessionAuth } from '../config/auth.js';
+import { pipeDatabase } from '../controllers/pipeController.js';
 
 
 const router = express.Router();
@@ -14,32 +15,8 @@ const router = express.Router();
 router.use('/jobs', sessionAuth, jobs); 
 router.use('/admin', admin);
 
-/**
- * @openapi
- * /:
- *  get:
- *    tags: 
- *      - Index
- *    description: Homepage of JetSetRadio API
- *    responses:
- *      200:
- *        description: App is serving the home page
- */
-router.get('/', (req, res) => {
-  res.send('JetSetRadio API');
-})
+router.get('/', (req, res) => res.send('JetSetRadio API'));
 
-/**
- * @openapi
- * /health:
- *   get:
- *     tags: 
- *       - HealthCheck
- *     description: Responds if the app is running
- *     responses:
- *       200:
- *         description: App is Healthy!
- */
 router.get('/health', (req, res) => {
   const healthCheckManager = new HealthCheckManager();
   let healthStatus;
@@ -52,5 +29,8 @@ router.get('/health', (req, res) => {
     res.status(504).send(healthStatus);
   }
 })
+
+/* A single route to populate local database with ALL data from the API in production */
+router.get('/pipe', async (req, res) => process.env.NODE_ENV !== 'production' ? await pipeDatabase(req, res) : res.status(500).send());
 
 export default router;

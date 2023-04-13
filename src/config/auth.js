@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { hash } from 'bcrypt';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -29,4 +30,8 @@ export const userIsLoggedIn = (req) => {
     return true;
   }
   return false;
+}
+
+export const hashPassword = async (password) => {
+  return await hash(password, 10);
 }
