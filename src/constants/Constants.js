@@ -10,6 +10,8 @@ const Constants = {
     JSRF_SONGS: 'JSRF_SONGS',
     JSR_SONGS: 'JSR_SONGS',
     GAMES: 'GAMES',
+    JSR_CHARACTERS: 'JSR_CHARACTERS',
+    JSRF_CHARACTERS: 'JSRF_CHARACTERS'
   },
   GAMES: {
     JET_SET_RADIO: 'Jet Set Radio',
