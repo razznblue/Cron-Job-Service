@@ -1,7 +1,10 @@
 const Constants = {
   URL: {
+    BASE_URL: 'https://jetsetradio.fandom.com',
     WIKI_BASE_URL: 'https://jetsetradio.fandom.com/wiki',
-    GRAFFITI_TAGS_PATH: '/Graffiti_Tags_(JSRF)'
+    GRAFFITI_TAGS_PATH: '/Graffiti_Tags_(JSRF)',
+    CHARACTERS_CATEGORY_PATH: '/Category:Characters',
+    CHARACTER_STATS_PATH: '/Character_Stats'
   },
   JOBS: {
     TEST_JOB: 'TEST_JOB',
@@ -10,6 +13,7 @@ const Constants = {
     JSRF_SONGS: 'JSRF_SONGS',
     JSR_SONGS: 'JSR_SONGS',
     GAMES: 'GAMES',
+    CHARACTERS: 'CHARACTERS'
   },
   GAMES: {
     JET_SET_RADIO: 'Jet Set Radio',

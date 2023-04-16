@@ -5,6 +5,7 @@ import { Game } from "./GameModel.js";
 import { Admin } from "./AdminModel.js";
 import { SongJSR, SongJSRF } from "./SongModel.js";
 import { Artist } from "./ArtistModel.js";
+import { CharacterJSR, CharacterJSRF} from "./CharacterModel.js"
 import LOGGER from "../utils/logger.js";
 
 
@@ -17,7 +18,9 @@ const models = {
   game: Game,
   songJsr: SongJSR,
   songJsrf: SongJSRF,
-  artist: Artist
+  artist: Artist,
+  characterJsr: CharacterJSR,
+  characterJsrf: CharacterJSRF
 };
 
 const BaseModel = {
