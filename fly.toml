@@ -1,0 +1,21 @@
+# fly.toml file generated for jetsetradio-api-admin on 2023-04-16T20:27:39-05:00
+
+app = "jetsetradio-api-admin"
+primary_region = "dfw"
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[env]
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+
+[checks]
+  [checks.alive]
+    type = "tcp"
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "5s"
