@@ -1,6 +1,6 @@
-import axios from "axios";
 import { load } from 'cheerio';
 
+import Axios from "../../../utils/axios.js";
 import { CharacterJSR, CharacterJSRF } from "../../../models/CharacterModel.js";
 import Constants from "../../../constants/Constants.js";
 import LOGGER from "../../../utils/logger.js";
@@ -8,10 +8,10 @@ import BaseModel from "../../../models/BaseModel.js";
 
 
 const jobExecutionTimeName = 'CronJob | characters';
-const { 
-  GAMES: { JET_SET_RADIO, JET_SET_RADIO_FUTURE },
-  URL: { BASE_URL, WIKI_BASE_URL, CHARACTERS_CATEGORY_PATH, CHARACTER_STATS_PATH }
-} = Constants;
+const { WIKI_BASE_URL, JET_SET_RADIO, JET_SET_RADIO_FUTURE } = Constants;
+const CHARACTERS_CATEGORY_PATH = '/wiki/Category:Characters';
+
+const CHARACTER_STATS_PATH = '/wiki/Character_Stats';
 const JET_SET_RADIO_CHARACTER = "Jet Set Radio Character";
 const CHARACTERS_IN_JET_SET_RADIO = "Characters in Jet Set Radio";
 const JET_SET_RADIO_GANG = "Jet Set Radio Gang";
@@ -36,22 +36,26 @@ const GANGS_IN_JET_SET_RADIO_FUTURE = "Gangs in Jet Set Radio Future";
  */
 
 export const processCharacters = async () => {
-  console.time(jobExecutionTimeName);
+  try {
+    console.time(jobExecutionTimeName);
 
-  const characters = await getCharacterNames();
-  const promises = [];
-  for (const character of characters) {
-    promises.push(processCharacter(character));
+    const characters = await getCharacterNames();
+    const promises = [];
+    for (const character of characters) {
+      promises.push(processCharacter(character));
+    }
+    await Promise.all(promises);
+    await processCharacterStats();
+    
+    console.timeEnd(jobExecutionTimeName);
+  } catch(err) {
+    LOGGER.error(`Error Processing Characters: \n${err}`);
   }
-  await Promise.all(promises);
-  await processCharacterStats();
-  
-  console.timeEnd(jobExecutionTimeName);
 }
 
 const getCharacterNames = async () => {
   const url = `${WIKI_BASE_URL}${CHARACTERS_CATEGORY_PATH}`;
-  const response = await axios.get(url);
+  const response = await Axios.get(url);
   const $ = load(response.data);
 
   /* Get wiki url links for all characters */
@@ -86,15 +90,15 @@ const getCharacterNames = async () => {
 }
 
 const validateCharacterUrl = async (characterName, characterPath) => {
-  const url = await axios.get(BASE_URL + characterPath);
+  const url = await Axios.get(`${WIKI_BASE_URL}${characterPath}`);
   if (url.status === !200) {
-    LOGGER.error(`Encountered broken character page ${BASE_URL + characterPath} for ${characterName}`);
+    LOGGER.error(`Encountered broken character page ${WIKI_BASE_URL}${characterPath} for ${characterName}`);
     return characterName;
   }
 }
 
 const processCharacter = async (character) => {
-  const response = await axios.get(BASE_URL + character.url);
+  const response = await Axios.get(`${WIKI_BASE_URL}${character.url}`);
   const $ = load(response.data);
 
   /* Determine which game a character belongs to and send it to the appropriate processor */
@@ -143,7 +147,7 @@ const processJSRCharacter = async (character, $) => {
   const height = $('.mw-parser-output > .portable-infobox > [data-source=height] > div').html() || undefined;
   const trait = $('.mw-parser-output > .portable-infobox > [data-source=trait] > div').html() || undefined;
   const likes = $('.mw-parser-output > .portable-infobox > [data-source=likes] > div').html() || undefined;
-  const wikiPage = BASE_URL + character.url;
+  const wikiPage = `${WIKI_BASE_URL}${character.url}`;
   const heroImage = getWikiImage($);
   const gallery = getGallery($);
 
@@ -176,7 +180,7 @@ const processJSRFCharacter = async (character, $) => {
   const descriptions = getWikiDescription($);
   const gender = $('.mw-parser-output > .portable-infobox > [data-source=gender] > div').html() || undefined;
   const debut = $('.mw-parser-output > .portable-infobox > [data-source=debut] > div').html() || undefined;
-  const wikiPage = BASE_URL + character.url;
+  const wikiPage = `${WIKI_BASE_URL}${character.url}`;
   const heroImage = getWikiImage($);
   const gallery = getGallery($);
 
@@ -203,7 +207,7 @@ const processJSRFCharacter = async (character, $) => {
 const processCharacterStats = async () => {
   LOGGER.info('processing characterStats');
   const url = `${WIKI_BASE_URL}${CHARACTER_STATS_PATH}`;
-  const response = await axios.get(url);
+  const response = await Axios.get(url);
   const $ = load(response.data);
 
   /* Process Stats for JSR Characters */

@@ -1,11 +1,10 @@
-import axios from 'axios';
-
+import Axios from '../utils/axios.js';
 import LOGGER from '../utils/logger.js';
 import BaseModel from '../models/BaseModel.js';
 
 export const pipeDatabase = async (req, res) => {
   const jsrapiBaseUrl = 'https://jetsetradio-api.onrender.com';
-  const apiEndpoints = await axios.get(`${jsrapiBaseUrl}/endpoints?pipe=true`);
+  const apiEndpoints = await Axios.get(`${jsrapiBaseUrl}/endpoints?pipe=true`);
   const jsr = 'Jsr';
   const jsrf = 'Jsrf';
   const pipeData = [];
@@ -54,7 +53,7 @@ export const pipeDatabase = async (req, res) => {
     LOGGER.debug(`Attempting to pipe ${pipe}`);
   
     await BaseModel.deleteAllFromCollection(pipe.model);
-    const pipeResponse = await axios.get(`${jsrapiBaseUrl}${pipe.endpoint}`);
+    const pipeResponse = await Axios.get(`${jsrapiBaseUrl}${pipe.endpoint}`);
     const insert = await BaseModel.insertAllDocuments(pipe.model, pipeResponse.data);
     if (insert) {
       LOGGER.info(`Piped ${pipe.model}`);

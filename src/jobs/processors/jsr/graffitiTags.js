@@ -1,6 +1,6 @@
-import axios from "axios";
 import { load } from 'cheerio';
 
+import Axios from '../../../utils/axios.js';
 import { GraffitiTagJSR } from "../../../models/GraffitiTagModel.js";
 import Constants from "../../../constants/Constants.js";
 import LOGGER from "../../../utils/logger.js";
@@ -22,13 +22,12 @@ const sizesMap = {
 }
 
 const jobExecutionTimeName = 'CronJob | jsr-graffiti-tags';
-const { JOBS: { JSR_GRAFFITI_TAGS }, GAMES: { JET_SET_RADIO } } = Constants;
+const { JET_SET_RADIO } = Constants;
 
 export const processJSRGraffitiTags = async () => {
-  LOGGER.info(`Starting ${JSR_GRAFFITI_TAGS} Cron Job`);
   console.time(jobExecutionTimeName);
   const url = `https://greg-kennedy.com/jsr`;
-  const response = await axios.get(url);
+  const response = await Axios.get(url);
 
   const $ = load(response.data);
   const modelName = 'graffitiTagJsr';

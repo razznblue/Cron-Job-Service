@@ -1,28 +1,26 @@
-import axios from 'axios';
 import { load } from 'cheerio';
 
+import Axios from '../../../utils/axios.js';
 import Constants from "../../../constants/Constants.js";
 import { GraffitiTagJSRF } from '../../../models/GraffitiTagModel.js';
 import BaseModel from '../../../models/BaseModel.js';
 import LOGGER from '../../../utils/logger.js';
 import { getCloudFiles } from '../../../utils/googlecloud.js';
 
+
+const { WIKI_BASE_URL, JET_SET_RADIO_FUTURE } = Constants;
+const GRAFFITI_TAGS_PATH = '/wiki/Graffiti_Tags_(JSRF)';
 const jobExecutionTimeName = 'CronJob | jsrf-graffiti-tags';
-const { URL: { WIKI_BASE_URL, GRAFFITI_TAGS_PATH } } = Constants;
-const { JOBS: { JSRF_GRAFFITI_TAGS }, GAMES: { JET_SET_RADIO_FUTURE } } = Constants;
 
 /*
-   - Scrapes the Graffiti-Tags page on the wiki and
-  builds out a 'GraffitiTagJSRF' model. It will also 
-  add the imgUrl from google cloud storage if it exists.
-  Saves the resulting document to mongoDB
+   - Scrapes the Graffiti-Tags page on the wiki and builds out a 'GraffitiTagJSRF' model. It will also 
+  add the imgUrl from google cloud storage if it exists. Saves the resulting document to mongoDB
 */
 export const scrapeGraffitiTags = async () => {
-  LOGGER.info(`Starting ${JSRF_GRAFFITI_TAGS} Cron Job`);
   console.time(jobExecutionTimeName);
   const url = `${WIKI_BASE_URL}${GRAFFITI_TAGS_PATH}`;
 
-  const requests = await Promise.all([axios.get(url), getCloudFiles('jsrf/graffiti-tags/', '/')])
+  const requests = await Promise.all([Axios.get(url), getCloudFiles('jsrf/graffiti-tags/', '/')])
   const wikiHtml = requests[0];
   const cloudFiles = requests[1];
 
@@ -111,7 +109,7 @@ const extractNumbers = (str) => {
   try {
     return str.match(/\d+/).toString();
   } catch {
-    //LOGGER.warn(`Error extracting numbers from string ${str}`);
+    LOGGER.debug(`Error extracting numbers from string ${str}`);
   }
 }
 
