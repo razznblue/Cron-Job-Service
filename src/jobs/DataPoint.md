@@ -12,9 +12,8 @@ The example data point used in this guide is ```JSRF_SONGS```
 
 ### Creating the CronJob
 
- - Add JobName to src/constants/Constants.js file under "JOBS" <br />
-  <img src="../public/img/constants-jobs.png" width=30% /><br />
- -  Start up qa server, and add Job to mongo by using the [createAvailableJob](../routes/jobsRouter.js) endpoint(```line 10```). You will need to add the cronInterval(this can be changed later). See a list of [available intervals](./intervals.js) to use. The timezone is not required. If the timezone is not specified it will default to ```America/Chicago```. Make sure the jobName matches the name in the Constants file. <br />
+ - Add a new JobName to src/jobs/jobInterchanger.js file <br />
+ -  Start up qa server, and add Job to mongo by using the [createAvailableJob](../routes/jobsRouter.js) endpoint(```line 10```). You will need to add the cronInterval(this can be changed later). See a list of [available intervals](./intervals.js) to use. The timezone is not required. If the timezone is not specified it will default to ```America/Chicago```. Make sure the jobName matches the name in the jobInterchanger file. <br />
   <img src="../public/img/postman-available-job.png" width=30% /><br />
  -  Verify your cronJob was created by running the [GetAvailableJob route](../routes/jobsRouter.js) or just check in mongo.
  - Now your CronJob is set up! But if you start it now, it won't actually do anything when it executes until we complete a few more steps.
@@ -44,6 +43,7 @@ The processors for jobs are found under src/jobs/processors.
  - Create a file under the appropriate location for your processor. For this example, songs.js will go in the processors/jsrf folder.
  -  Write your processing logic. This is where you will extract data from an external location, transform it, and save it to the Database using the new model you created.
  -  [Axios](https://github.com/axios/axios) and [Cheerio](https://github.com/cheeriojs/cheerio) are already installed as dependencies and can both be used to acheive almost anything you want to do here. If you want to manually create a file to ingest from, that is fine. If you do, please put it under src/storage and use JSON format if possible.
+ -  HINT: Make sure you can run your processor from a route before you start writing too much business logic. It will make developing a lot easier. Do the next step then come back here after.
 
 
 ### Link Processor to CronJob Trigger
