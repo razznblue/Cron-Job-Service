@@ -1,0 +1,171 @@
+[
+  {
+    "name": "The Garage",
+    "description": "The garage is an abandoned junkyard. Here you can talk to Roboy, who can let you choose your character, save your game, change your graffiti, change your background music, do more tutorials, and do test runs, as well as the other GGs you acquire in the story mode. You can also roam here. This is where the player begins when they start a new game. The player will play as Yo-Yo as their starting character, and Gum will show you the basics.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "",
+    "adjacentLocations": ["Dogenzaka Hill", "Shibuya Terminal", "Rokkaku-Dai Heights", "99th Street"],
+    "hasMixtape": false,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/the-garage.webp"
+  },
+  {
+    "name": "Dogenzaka Hill",
+    "description": "Dogenzaka Hill is the first level in the game after completing the initial tutorial at the Garage.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Doom Riders",
+    "unlockableCharacters": ["Beat", "Doom Riders"],
+    "adjacentLocations": ["The Garage", "Shibuya Terminal"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/dogenzaka-hill.webp"
+  },
+  {
+    "name": "Shibuya Terminal",
+    "description": "Shibuya Terminal is the third area the player travels to in Jet Set Radio Future. Here, the player first meets Poison Jam and has to cover up their 'Nasty Graffiti'.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Zero Beat",
+    "unlockableCharacters": ["Combo", "Zero Beat"],
+    "adjacentLocations": ["Dogenzaka Hill", "Chuo Street", "The Garage", "Hikage Street"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/shibuya-terminal.webp"
+  },
+  {
+    "name": "Chuo Street",
+    "description": "Chuo Street is an area connected to Shibuya Terminal, in which the player fights against several Rokkaku Police tanks and one of the Golden Rhinos in with the Golden grappling claw later in the game.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Roboy",
+    "unlockableCharacters": ["Roboy"],
+    "adjacentLocations": ["Shibuya Terminal"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/chuo-street.jpeg"
+  },
+  {
+    "name": "Rokkaku-Dai Heights",
+    "description": "Rokkaku-Dai Heights is a rusted-down area owned by Rokakku Gouji and is home to many Rudies. It is also one of the largest areas in the game and consists of many powerlines with three distinct 'levels' to the area.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Gouji Rokkaku",
+    "unlockableCharacters": ["Gouji Rokkaku", "Rhyth"],
+    "adjacentLocations": ["The Garage", "Tokyo Underground Sewage Facility"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/rokkaku-dai-heights.jpeg"
+  },
+  {
+    "name": "99th Street",
+    "description": "99th Street is a location in Jet Set Radio Future. It is a crowded shopping center.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Rapid 99",
+    "unlockableCharacters": ["Rapid 99"],
+    "adjacentLocations": ["The Garage", "The Skyscraper District and Pharaoh Park"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/99th-street.jpeg"
+  },
+  {
+    "name": "Tokyo Underground Sewage Facility",
+    "description": "The Tokyo Underground Sewage Facility is a location in Jet Set Radio Future adjacent to Rokkaku-Dai Heights.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Poison Jam",
+    "unlockableCharacters": ["Garam", "Poison Jam"],
+    "adjacentLocations": ["Rokkaku-Dai Heights", "Bottom Point of Sewage Facility", "Kibogaoka Hill", "The Fortified Residential Zone"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/sewage-facility.jpg"
+  },
+  {
+    "name": "Bottom Point of Sewage Facility",
+    "description": "In The Bottom Point of the Sewage Facility, the player finds the Poison Jam group and their leader Cube, who then challenge the player to Tagger's Tag.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Poison Jam",
+    "unlockableCharacters": ["Cube", "Poison Jam"],
+    "adjacentLocations": ["Tokyo Underground Sewage Facility"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/bottom-point.jpeg"
+  },
+  {
+    "name": "Hikage Street",
+    "description": "Hikage Street is an area in Jet Set Radio Future just outside of Shibuya Terminal where you fight the Terror Drone, a giant four-legged machine powered by Hayashi.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Love Shockers",
+    "unlockableCharacters": ["Love Shockers"],
+    "adjacentLocations": ["Shibuya Terminal"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/hikage-street.jpeg"
+  },
+  {
+    "name": "The Skyscraper District and Pharaoh Park",
+    "description": "The Skyscraper District and Pharaoh Park is a location that is accessed through 99th Street. The area houses The Immortals.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "The Immortals",
+    "unlockableCharacters": ["The Immortals"],
+    "adjacentLocations": ["99th Street", "Highway Zero", "The Future Site of Tokyo Line", "Sky Dinosaurian Square"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/skyscraper-district.jpg"
+  },
+  {
+    "name": "Sky Dinosaurian Square",
+    "description": "Sky Dinosaurian Square is a location in Jet Set Radio Future. The GG's are led here by the Noise Tanks and NT-3000 (Which Cube revealed him to be a Noise Tank) and you must defeat them in a game of Tagger's Tag.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "NT-3000",
+    "unlockableCharacters": ["NT-3000"],
+    "adjacentLocations": ["The Skyscraper District and Pharaoh Park"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/sky-dinosaurian-square.jpeg"
+  },
+  {
+    "name": "Highway Zero",
+    "description": "Highway Zero can be accessed from The Skyscraper District and Pharaoh Park after the player has managed to defeat The Immortals in a game of Tagger's Tag.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Noise Tanks",
+    "unlockableCharacters": ["Soda", "Noise Tanks"],
+    "adjacentLocations": ["The Skyscraper District and Pharaoh Park"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/highway-zero.jpg"
+  },
+  {
+    "name": "The Future Site of Rokkaku Expo Stadium",
+    "description": "The Future Site of Rokkaku Expo Stadium is a location off of 99th Street. The player is taken here after being trapped by the Noise Tanks. The player must compete and win in a 'Death Ball' event to escape.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "",
+    "unlockableCharacters": ["Jazz"],
+    "adjacentLocations": ["99th Street"],
+    "hasMixtape": false,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/future-site.webp"
+  },
+  {
+    "name": "Kibogaoka Hill",
+    "description": "Kibogaoka Hill is a location adjacent to the Tokyo Underground Sewage Facility. The player must come to this location in order to spray over The Immortals' graffiti in Chapter 4",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "Pots",
+    "unlockableCharacters": ["Boogie", "Pots"],
+    "adjacentLocations": ["Tokyo Underground Sewage Facility"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/kibogaoka-hill.webp"
+  },
+  {
+    "name": "The Site of Tokyo Line",
+    "description": "The Site of Tokyo line is an area in Jet Set Radio Future that can only be accessed once in the game, during Chapter 8. It is adjacent to The Skycraper District and Pharaoh Park",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "",
+    "unlockableCharacters": [],
+    "adjacentLocations": ["The Skyscraper District and Pharaoh Park"],
+    "hasMixtape": false,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/future-site-of-tokyo-line.jpeg"
+  },
+  {
+    "name": "The Fortified Residential Zone",
+    "description": "The Fortified Residential Zone is the largest area in the game. Players will have to save themselves twice from blue and red bomb devices, in which the Golden Rhinos placed throughout the area.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "A.KU.MU",
+    "unlockableCharacters": ["A.KU.MU"],
+    "adjacentLocations": ["Tokyo Underground Sewage Facility"],
+    "hasMixtape": true,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/fortified-residential-zone.webp"
+  },
+  {
+    "name": "Gouji's Tower",
+    "description": "Gouji's Tower is the final level of the game. This is an area in which the player battles A.KU.MU, which he is settled on the top of a tower.",
+    "game": "Jet Set Radio Future",
+    "secretCharacter": "",
+    "unlockableCharacters": [],
+    "adjacentLocations": [],
+    "hasMixtape": false,
+    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/goujis-tower.jpeg"
+  }
+]

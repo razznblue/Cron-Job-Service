@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Benten-Cho",
+    "description": "",
+    "levels": [],
+    "subLocations": [],
+    "unlockableCharacters": ["Noise Tanks", "Mew", "Cube", "YoYo"]
+  },
+  {
+    "name": "Kogane-Cho",
+    "description": "",
+    "levels": [],
+    "subLocations": [],
+    "unlockableCharacters": ["Poison Jam", "Slate", "Garam"]
+  },
+  {
+    "name": "Shibuya-Cho",
+    "description": "",
+    "levels": [],
+    "subLocations": [],
+    "unlockableCharacters": ["Love Shockers", "Gum", "Tab", "Cube", "Combo"]
+  },
+  {
+    "name": "Grind City",
+    "description": "",
+    "levels": [],
+    "subLocations": [],
+    "unlockableCharacters": ["Goji Rokkaku"]
+  }
+]
