@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Benten-cho",
+    "description": "Benten-cho is the home turf of the Noise Tanks, a rival tech-savvy gang of the GG's.",
+    "levels": ["Benten Boogie", "Graffiti High", "Noise Reduction", "Benten Burning", "Behind the Mask"],
+    "subLocations": ["Subway", "Train Line", "Chinatown", "Highway Zero", "Geckijomae", "Business District"],
+    "secretCharacter": "Noise Tanks",
+    "unlockableCharacters": ["Noise Tanks", "Mew", "Cube", "Yo-Yo"]
+  },
+  {
+    "name": "Kogane-cho",
+    "description": "Kogane-cho is the home turf of Poison Jam, spray painting their terrorizing graffiti.",
+    "levels": ["Monster of Kogane", "No. 540", "Kogane Circus", "Fight or Flight"],
+    "subLocations": ["Residential Area", "Sewers", "Construction Site"],
+    "secretCharacter": "Poison Jam",
+    "unlockableCharacters": ["Poison Jam", "Slate", "Garam"]
+  },
+  {
+    "name": "Shibuya-cho",
+    "description": "A city in the south of Tokyo-to, described as 'the city of daylight'. It is home turf to the GGs & the Love Shockers.",
+    "levels": ["Shibuya GG", "Love Trap", "Love Attack", "Explosion"],
+    "subLocations": ["Bus Terminal", "Playground", "Center Street", "Sewage Pipe", "Park Street", "Split Highway"],
+    "secretCharacter": "Love Shockers",
+    "unlockableCharacters": ["Love Shockers", "Gum", "Corn", "Cube", "Combo"]
+  },
+  {
+    "name": "Grind City",
+    "description": "Grind City is the turf that used to belong to Combo, Cube, and Coin before the Golden Rhinos started to invade.",
+    "levels": ["Tag or Die", "Rock' n Roll Grind", "Final Groove"],
+    "subLocations": ["Bantam Street", "Grind Square"],
+    "secretCharacter": "Goji Rokkaku",
+    "unlockableCharacters": ["Goji Rokkaku"]
+  }
+]

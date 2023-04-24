@@ -1,28 +1,27 @@
-import axios from 'axios';
 import { load } from 'cheerio';
 
+import Axios from '../../../utils/axios.js';
 import Constants from "../../../constants/Constants.js";
 import { GraffitiTagJSRF } from '../../../models/GraffitiTagModel.js';
 import BaseModel from '../../../models/BaseModel.js';
 import LOGGER from '../../../utils/logger.js';
 import { getCloudFiles } from '../../../utils/googlecloud.js';
 
+
+const { WIKI_BASE_URL, JET_SET_RADIO_FUTURE } = Constants;
+const GRAFFITI_TAGS_PATH = '/wiki/Graffiti_Tags_(JSRF)';
 const jobExecutionTimeName = 'CronJob | jsrf-graffiti-tags';
-const { URL: { WIKI_BASE_URL, GRAFFITI_TAGS_PATH } } = Constants;
-const { JOBS: { JSRF_GRAFFITI_TAGS }, GAMES: { JET_SET_RADIO_FUTURE } } = Constants;
+const LOCATION_JSRF = 'locationJsrf';
 
 /*
-   - Scrapes the Graffiti-Tags page on the wiki and
-  builds out a 'GraffitiTagJSRF' model. It will also 
-  add the imgUrl from google cloud storage if it exists.
-  Saves the resulting document to mongoDB
+   - Scrapes the Graffiti-Tags page on the wiki and builds out a 'GraffitiTagJSRF' model. It will also 
+  add the imgUrl from google cloud storage if it exists. Saves the resulting document to mongoDB
 */
 export const scrapeGraffitiTags = async () => {
-  LOGGER.info(`Starting ${JSRF_GRAFFITI_TAGS} Cron Job`);
   console.time(jobExecutionTimeName);
   const url = `${WIKI_BASE_URL}${GRAFFITI_TAGS_PATH}`;
 
-  const requests = await Promise.all([axios.get(url), getCloudFiles('jsrf/graffiti-tags/', '/')])
+  const requests = await Promise.all([Axios.get(url), getCloudFiles('jsrf/graffiti-tags/', '/')])
   const wikiHtml = requests[0];
   const cloudFiles = requests[1];
 
@@ -53,13 +52,13 @@ export const scrapeGraffitiTags = async () => {
 
 const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
   const { number, tagName, level, location, size, wikiImageUrl } = dataToSave;
-  const exists = await BaseModel.existsByKeyAndValue(modelName, 'number', number);
-    if (!exists && number) {
+  const graffitiSoulLocation = location;
+  const tag = await BaseModel.getByKeyAndValue(modelName, 'number', number);
+    if (!tag && number) {
       const graffitiTag = new GraffitiTagJSRF();
       graffitiTag.number = number;
       graffitiTag.tagName = tagName;
-      graffitiTag.level = level;
-      graffitiTag.location = location;
+      graffitiTag.graffitiSoulLocation = graffitiSoulLocation;
       graffitiTag.size = size;
       graffitiTag.gameId = await BaseModel.getGameId(JET_SET_RADIO_FUTURE);
       graffitiTag.wikiImageUrl = wikiImageUrl;
@@ -67,7 +66,29 @@ const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
       await graffitiTag.save();
       LOGGER.debug(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
     } else {
+      if (level) {
+        //TODO Turn this into a trigger in a future config tool
+        try {
+          const levels = level.split('/');
+          for (const lev of levels) {
+            const capitalizedlevel = capitalize(lev);
+            const location = await BaseModel.getByKeyAndValue(LOCATION_JSRF, 'name', capitalizedlevel);
+            if (location && !itemExistsInObject(location.name, tag.locations)) {
+              tag.locations.push({name: location.name, id: location._id});
+              tag.level = undefined;
+              tag.graffitiSoulLocation = graffitiSoulLocation;
+              await tag.save();
+              LOGGER.info(`Saved GraffitiTag with location: '${location.name}'`);
+            } else {
+              LOGGER.warn(`Found existing location '${capitalizedlevel}' on tag '${tag.tagName}'`);
+            }
+          }
+        } catch(err) {
+          LOGGER.error(`Could not get locationId with location '${location.name}' for GraffitiTag. => \n${err}`);
+        }
+      }
       LOGGER.debug(`Found existing JSRF GraffitiTag in DB ${number}`);
+
     }
 }
 
@@ -111,8 +132,25 @@ const extractNumbers = (str) => {
   try {
     return str.match(/\d+/).toString();
   } catch {
-    //LOGGER.warn(`Error extracting numbers from string ${str}`);
+    LOGGER.debug(`Error extracting numbers from string ${str}`);
   }
+}
+
+const excludedWords = ['of', 'the', 'and'];
+const capitalize = (str) => {
+  let words = str.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    if (!excludedWords.includes(words[i]) || i === 0 ) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+  }
+  return words.join(" ");
+}
+
+const itemExistsInObject = (item, objects) => {
+  if (objects === undefined) return false;
+  const items = objects.map(obj => {return obj.name});
+  return items.includes(item);
 }
 
 export default scrapeGraffitiTags;

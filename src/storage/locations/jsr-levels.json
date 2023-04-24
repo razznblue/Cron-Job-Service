@@ -1,0 +1,148 @@
+[ 
+  {
+    "name": "The Monster of Kogane",
+    "description": "If you play this level before completing 'Benton Boogie', Pots(the GG's dog) will be dog-napped! He will return later",
+    "location": "Kogane-cho",
+    "jetRankingPoints": "30000",
+    "smallTagsCount": "9",
+    "largeTagsCount": "2",
+    "extraLargeTagsCount": "1",
+    "chapter": "1"
+  },
+  {
+    "name": "No. 540",
+    "description": "This is a standard level where you will need to collect cans, spray over graffiti, and avoid the police",
+    "location": "Kogane-cho",
+    "pointsForJetRanking": "40000",
+    "smallTagsCount": "9",
+    "largeTagsCount": "2",
+    "extraLargeTagsCount": "2",
+    "chapter": "1"
+  },
+  {
+    "name": "Kogane Circus",
+    "description": "This is a tag level. You need to tag each member of Poison Jam 10 times in order to beat this level.",
+    "location": "Kogane-cho",
+    "pointsForJetRanking": "30000",
+    "bossLevel": true,
+    "chapter": "1"
+  },
+  {
+    "name": "Benton Boogie",
+    "description": "If you complete this level before 'The monster of Kogane', the GG's garage will be invaded by frogs!",
+    "location": "Benten-cho",
+    "pointsForJetRanking": "45000",
+    "smallTagsCount": "8",
+    "largeTagsCount": "6",
+    "extraLargeTagsCount": "2",
+    "chapter": "1"
+  },
+  {
+    "name": "Love Trap",
+    "description": "The player needs to spray over the Love Shockers graffiti and avoid Onishima and his police forces.",
+    "location": "Shibuya-cho",
+    "pointsForJetRanking": "40000",
+    "smallTagsCount": "5",
+    "largeTagsCount": "4",
+    "extraLargeTagsCount": "4",
+    "chapter": "1"
+  },
+  {
+    "name": "Shibuya GG",
+    "description": "The player starts on top of the bus shelter and will need to spray graffiti points in the area.",
+    "location": "Shibuya-cho",
+    "pointsForJetRanking": "30000",
+    "smallTagsCount": "4",
+    "largeTagsCount": "5",
+    "extraLargeTagsCount": "1",
+    "chapter": "1"
+  },
+  {
+    "name": "Graffiti High",
+    "description": "This level takes place in Benten-cho where the player needs to spray over the Noice Tanks's graffiti.",
+    "location": "Benten-cho",
+    "pointsForJetRanking": "30000",
+    "smallTagsCount": "14",
+    "largeTagsCount": "3",
+    "extraLargeTagsCount": "2",
+    "chapter": "1"
+  },
+  {
+    "name": "Noise Reduction",
+    "description": "This is a tag level. You need to tag each member of the Noise Tanks 10 times in order to beat this level.",
+    "location": "Benten-cho",
+    "pointsForJetRanking": "30000",
+    "bossLevel": true,
+    "chapter": "1"
+  },
+  {
+    "name": "Love Attack",
+    "description": "This is a tag level. You need to tag each member of the Love Shockers 10 times in order to beat this level.",
+    "location": "Shibuya-cho",
+    "pointsForJetRanking": "30000",
+    "bossLevel": true,
+    "chapter": "1"
+  },
+  {
+    "name": "Tag or Die",
+    "description": "This is one of the Grind city levels the player needs to complete in order to unlock Goji Rokkaku.",
+    "location": "Grind City",
+    "pointsForJetRanking": "40000",
+    "chapter": "2"
+  },
+  {
+    "name": "Rock 'n Roll Grind",
+    "description": "This is one of the Grind city levels the player needs to complete in order to unlock Goji Rokkaku.",
+    "location": "Grind City",
+    "pointsForJetRanking": "50000",
+    "chapter": "2"
+  },
+  {
+    "name": "Explosion",
+    "description": "The player returns to Shibuya-cho to reclaim their territory from the Golden Rhinos who sprayed over the GG's existing graffiti.",
+    "location": "Shibuya-cho",
+    "pointsForJetRanking": "70000",
+    "smallTagsCount": "12",
+    "largeTagsCount": "8",
+    "extraLargeTagsCount": "3",
+    "chapter": "3"
+  },
+  {
+    "name": "Fight or Flight",
+    "description": "This is a difficult level where the Golden Rhinos send aerial assassins and Assassin No.2 to stop the player.",
+    "location": "Kogane-cho",
+    "pointsForJetRanking": "70000",
+    "smallTagsCount": "17",
+    "largeTagsCount": "5",
+    "extraLargeTagsCount": "2",
+    "chapter": "3"
+  },
+  {
+    "name": "Benten Burning",
+    "description": "This level is one of the largest in the game. The player needs to spray over the Golden Rhinos graffiti and avoid the pyro-police force.",
+    "location": "Benten-cho",
+    "pointsForJetRanking": "50000",
+    "smallTagsCount": "11",
+    "largeTagsCount": "4",
+    "extraLargeTagsCount": "4",
+    "chapter": "3"
+  },
+  {
+    "name": "Behind the Mask",
+    "description": "This level is one of the largest in the game. The player needs to spray Poison Jam again but this time, they are under mind-control by Goji Rokkaku.",
+    "location": "Benten-cho",
+    "pointsForJetRanking": "30000",
+    "bossLevel": true,
+    "chapter": "3"
+  },
+  {
+    "name": "Final Groove",
+    "description": "This is the final level of the story, where the player has to avoid the Golden Rhinos again and face Goji at the end.",
+    "location": "Grind City",
+    "bossLevel": true,
+    "smallTagsCount": "1",
+    "largeTagsCount": "0",
+    "extraLargeTagsCount": "4",
+    "chapter": "3"
+  }
+]
