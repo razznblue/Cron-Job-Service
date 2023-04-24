@@ -5,22 +5,27 @@ import { Game } from "./GameModel.js";
 import { Admin } from "./AdminModel.js";
 import { SongJSR, SongJSRF } from "./SongModel.js";
 import { Artist } from "./ArtistModel.js";
-import { CharacterJSR, CharacterJSRF} from "./CharacterModel.js"
+import { CharacterJSR, CharacterJSRF} from "./CharacterModel.js";
+import { LocationJSR, LocationJSRF } from "./LocationModel.js";
+import { LevelJSR } from "./LevelModel.js";
 import LOGGER from "../utils/logger.js";
 
 
 const models = {
-  graffitiTagJsr: GraffitiTagJSR,
-  graffitiTagJsrf: GraffitiTagJSRF,
+  admin: Admin,
   cronJob: CronJob,
   availableCronJob: AvailableCronJob,
-  admin: Admin,
   game: Game,
+  graffitiTagJsr: GraffitiTagJSR,
+  graffitiTagJsrf: GraffitiTagJSRF,
   songJsr: SongJSR,
   songJsrf: SongJSRF,
   artist: Artist,
   characterJsr: CharacterJSR,
-  characterJsrf: CharacterJSRF
+  characterJsrf: CharacterJSRF,
+  locationJsr: LocationJSR,
+  locationJsrf: LocationJSRF,
+  levelJsr: LevelJSR
 };
 
 const BaseModel = {

@@ -6,6 +6,7 @@ import { processGames } from "./processors/games/gamesJob.js";
 import processJSRFSongs from "./processors/jsrf/songs.js";
 import processJSRSongs from "./processors/jsr/songs.js";
 import { processCharacters } from "./processors/characters/characterJob.js";
+import { processLocations } from "./processors/locations/locationsJob.js";
 
 
 const TEST_JOB = 'TEST_JOB';
@@ -15,6 +16,7 @@ const JSRF_SONGS = 'JSRF_SONGS';
 const JSR_SONGS = 'JSR_SONGS';
 const GAMES = 'GAMES';
 const CHARACTERS = 'CHARACTERS';
+const LOCATIONS = 'LOCATIONS';
 
 export const JobInterchanger = {
 
@@ -38,6 +40,8 @@ export const JobInterchanger = {
         return await jobActions.processJSRSongs();
       case CHARACTERS:
         return await jobActions.processCharacters();
+      case LOCATIONS:
+        return await jobActions.processLocations();
     }
     return () => {};
   }
@@ -51,5 +55,6 @@ const jobActions = {
   processGames: async () => await processGames(),
   processJSRFSongs: async () => await processJSRFSongs(),
   processJSRSongs: async () => await processJSRSongs(),
-  processCharacters: async () => await processCharacters()
+  processCharacters: async () => await processCharacters(),
+  processLocations: async () => await processLocations(),
 }

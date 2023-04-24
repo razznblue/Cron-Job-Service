@@ -4,6 +4,7 @@
     "description": "The garage is an abandoned junkyard. Here you can talk to Roboy, who can let you choose your character, save your game, change your graffiti, change your background music, do more tutorials, and do test runs, as well as the other GGs you acquire in the story mode. You can also roam here. This is where the player begins when they start a new game. The player will play as Yo-Yo as their starting character, and Gum will show you the basics.",
     "game": "Jet Set Radio Future",
     "secretCharacter": "",
+    "unlockableCharacters": [],
     "adjacentLocations": ["Dogenzaka Hill", "Shibuya Terminal", "Rokkaku-Dai Heights", "99th Street"],
     "hasMixtape": false,
     "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/the-garage.webp"
@@ -94,7 +95,7 @@
     "game": "Jet Set Radio Future",
     "secretCharacter": "The Immortals",
     "unlockableCharacters": ["The Immortals"],
-    "adjacentLocations": ["99th Street", "Highway Zero", "The Future Site of Tokyo Line", "Sky Dinosaurian Square"],
+    "adjacentLocations": ["99th Street", "Highway Zero", "The Site of Tokyo Line", "Sky Dinosaurian Square"],
     "hasMixtape": true,
     "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/skyscraper-district.jpg"
   },
