@@ -11,8 +11,9 @@ const jsrfGraffitiTagSchema = new mongoose.Schema (
   {
     number: { type: String },
     tagName: { type: String },
-    /* level is deprecated. Switched to location on v1.0.1 */
+    /* level and location are deprecated. Switched to locations on v1.0.1 */
     level: { type: String },
+    location: { type: String },
     locations: [{ type: LocationSchema }],
     graffitiSoulLocation: { type: String },
     size: { type: String },
