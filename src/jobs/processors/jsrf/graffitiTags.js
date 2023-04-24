@@ -11,6 +11,7 @@ import { getCloudFiles } from '../../../utils/googlecloud.js';
 const { WIKI_BASE_URL, JET_SET_RADIO_FUTURE } = Constants;
 const GRAFFITI_TAGS_PATH = '/wiki/Graffiti_Tags_(JSRF)';
 const jobExecutionTimeName = 'CronJob | jsrf-graffiti-tags';
+const LOCATION_JSRF = 'locationJsrf';
 
 /*
    - Scrapes the Graffiti-Tags page on the wiki and builds out a 'GraffitiTagJSRF' model. It will also 
@@ -51,13 +52,13 @@ export const scrapeGraffitiTags = async () => {
 
 const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
   const { number, tagName, level, location, size, wikiImageUrl } = dataToSave;
-  const exists = await BaseModel.existsByKeyAndValue(modelName, 'number', number);
-    if (!exists && number) {
+  const graffitiSoulLocation = location;
+  const tag = await BaseModel.getByKeyAndValue(modelName, 'number', number);
+    if (!tag && number) {
       const graffitiTag = new GraffitiTagJSRF();
       graffitiTag.number = number;
       graffitiTag.tagName = tagName;
-      graffitiTag.level = level;
-      graffitiTag.location = location;
+      graffitiTag.graffitiSoulLocation = graffitiSoulLocation;
       graffitiTag.size = size;
       graffitiTag.gameId = await BaseModel.getGameId(JET_SET_RADIO_FUTURE);
       graffitiTag.wikiImageUrl = wikiImageUrl;
@@ -65,7 +66,29 @@ const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
       await graffitiTag.save();
       LOGGER.debug(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
     } else {
+      if (level) {
+        //TODO Turn this into a trigger in a future config tool
+        try {
+          const levels = level.split('/');
+          for (const lev of levels) {
+            const capitalizedlevel = capitalize(lev);
+            const location = await BaseModel.getByKeyAndValue(LOCATION_JSRF, 'name', capitalizedlevel);
+            if (location && !itemExistsInObject(location.name, tag.locations)) {
+              tag.locations.push({name: location.name, id: location._id});
+              tag.level = undefined;
+              tag.graffitiSoulLocation = graffitiSoulLocation;
+              await tag.save();
+              LOGGER.info(`Saved GraffitiTag with location: '${location.name}'`);
+            } else {
+              LOGGER.warn(`Found existing location '${capitalizedlevel}' on tag '${tag.tagName}'`);
+            }
+          }
+        } catch(err) {
+          LOGGER.error(`Could not get locationId with location '${location.name}' for GraffitiTag. => \n${err}`);
+        }
+      }
       LOGGER.debug(`Found existing JSRF GraffitiTag in DB ${number}`);
+
     }
 }
 
@@ -111,6 +134,23 @@ const extractNumbers = (str) => {
   } catch {
     LOGGER.debug(`Error extracting numbers from string ${str}`);
   }
+}
+
+const excludedWords = ['of', 'the', 'and'];
+const capitalize = (str) => {
+  let words = str.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    if (!excludedWords.includes(words[i]) || i === 0 ) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+  }
+  return words.join(" ");
+}
+
+const itemExistsInObject = (item, objects) => {
+  if (objects === undefined) return false;
+  const items = objects.map(obj => {return obj.name});
+  return items.includes(item);
 }
 
 export default scrapeGraffitiTags;
