@@ -1,14 +1,15 @@
-# New Data Point Setup
+# New Resource Setup
 
-The example data point used in this guide is ```JSRF_SONGS```
+The example resource used in this guide is ```JSRF_SONGS```
 
-- [New Data Point Setup](#new-data-point-setup)
+- [New Resource Setup](#new-resource-setup)
     - [Creating the CronJob](#creating-the-cronjob)
     - [Creating the Model](#creating-the-model)
     - [Creating the Processor](#creating-the-processor)
     - [Link Processor to CronJob Trigger](#link-processor-to-cronjob-trigger)
     - [Test Data Ingestion](#test-data-ingestion)
-    - [Create public API endpoint](#create-public-api-endpoint)
+    - [Create public API endpoint(API)](#create-public-api-endpointapi)
+    - [Create Unit tests for new Resource(API)](#create-unit-tests-for-new-resourceapi)
 
 ### Creating the CronJob
 
@@ -20,9 +21,9 @@ The example data point used in this guide is ```JSRF_SONGS```
 
 ### Creating the Model
 
-The Model for each data point is a mongoose Model built off of a defined Schema. You can find them all under src/models.
+The Model for each resource is a mongoose Model built off of a defined Schema. You can find them all under src/models.
 
- -  Create a new Model file for your data point at this location.
+ -  Create a new Model file for your resource at this location.
  -  Pay close attention to the collectionName as the naming convention should match others.
  -  Make sure to add the collection to the correct database.<br />
   <img src="../public/img/correct-database.png" width=60% /><br />
@@ -65,7 +66,16 @@ Now it's time to link the cron job fire event to our processor. The hard work is
  - Verify you can create, stop, and trigger the new job. As an extra layer, you can make sure your job is included when the [START_ALL](../routes/jobsRouter.js) and [STOP_ALL](../routes/jobsRouter.js) routes are fired.
 
 
-### Create public API endpoint
+### Create public API endpoint(API)
 
- - Create the public API endpoint in [JetSetRadio-API](https://github.com/Jet-Set-Radio-API/JetSetRadio-API)
+ - Create the public API endpoints in [JetSetRadio-API](https://github.com/Jet-Set-Radio-API/JetSetRadio-API)
  - This will pull ALL the data you ingested into mongo for public API users to consume.
+ - Here is an existing [Router file](https://github.com/Jet-Set-Radio-API/JetSetRadio-API/blob/main/src/routes/characterRouter.js) you can use as a template.
+ - Here is the [Controller](https://github.com/Jet-Set-Radio-API/JetSetRadio-API/blob/main/src/controllers/characterController.js) for that router file.
+
+### Create Unit tests for new Resource(API)
+
+ - Create the unit tests in [JetSetRadio-API](https://github.com/Jet-Set-Radio-API/JetSetRadio-API) for the new resource. You can start from scratch or use an [existing test file](https://github.com/Jet-Set-Radio-API/JetSetRadio-API/blob/main/test/characters.test.js) as a resource(recommended).
+ - After writing your tests, make sure they all pass by running `npm run test`
+
+Again feel free to reach out if you need any help with these steps! 
