@@ -78,4 +78,4 @@ Now it's time to link the cron job fire event to our processor. The hard work is
  - Create the unit tests in [JetSetRadio-API](https://github.com/Jet-Set-Radio-API/JetSetRadio-API) for the new resource. You can start from scratch or use an [existing test file](https://github.com/Jet-Set-Radio-API/JetSetRadio-API/blob/main/test/characters.test.js) as a resource(recommended).
  - After writing your tests, make sure they all pass by running `npm run test`
 
-Again feel free to reach out if you need any help with these steps! 
+Feel free to reach out if you need clarification or help with any of these steps! 

@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "f1a16dda-6667-4b22-99e4-0946fff2537e",
+		"name": "JetSetRadio-API-Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13705422"
+	},
+	"item": [
+		{
+			"name": "Jobs",
+			"item": [
+				{
+					"name": "View Available Jobs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/available",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Available Job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jobName\": \"LOCATIONS\",\n    \"interval\": \"everyWednesdayAtMidnight\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/available",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"available"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Active Jobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/active",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/start/all",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"start",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Stop ALL",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{jsrf-api}}/jobs/delete/all",
+							"host": [
+								"{{jsrf-api}}"
+							],
+							"path": [
+								"jobs",
+								"delete",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Job",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/JSRF_GRAFFITI_TAGS/trigger",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"JSRF_GRAFFITI_TAGS",
+								"trigger"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/JSRF_GRAFFITI_TAGS",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"JSRF_GRAFFITI_TAGS"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{jsrf-api-admin}}/jobs/JSRF_SONGS",
+							"host": [
+								"{{jsrf-api-admin}}"
+							],
+							"path": [
+								"jobs",
+								"JSRF_SONGS"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Admin(One Time Action)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"\",\n    \"password\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jsrf-api-admin}}/admin/create",
+					"host": [
+						"{{jsrf-api-admin}}"
+					],
+					"path": [
+						"admin",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"\",\n    \"password\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jsrf-api-admin}}/admin/login",
+					"host": [
+						"{{jsrf-api-admin}}"
+					],
+					"path": [
+						"admin",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pipe Database",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{jsrf-api-admin}}/pipe",
+					"host": [
+						"{{jsrf-api-admin}}"
+					],
+					"path": [
+						"pipe"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
