@@ -53,4 +53,4 @@ CLOUD_BUCKET_NAME=
  - The application has the option to store files in google cloud storage. It is sometimes a pain to setup a service worker account, grab the credentials file, and work with it. If you want to use the storage, hmu and we can come up with a plan! 💪
 
 ## New Resource
- - Interested in adding a completely new Resource to the API? Check out these [Docs](./Resource.md) on how to do that!
+ - Interested in adding a completely new Resource to the API? Check out these [Docs](./Resource.md) on how to do that!!
