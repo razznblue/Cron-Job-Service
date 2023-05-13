@@ -1,4 +1,3 @@
-
 # <img src="https://storage.googleapis.com/jetsetradio-api-core/images/jsr-logo.png" width=6% />  JetSetRadio-API Admin
 
 A set of Tools to manage the [JetSetRadio-API](https://github.com/Jet-Set-Radio-API/JetSetRadio-API)
@@ -25,12 +24,12 @@ This is an open-source software free for anyone to use. I do NOT claim to own.
 ## Contributing
 I am open and welcome to ALL contributions!
 
-Instructions on setting up a DEV environment is coming soon!
-
 Please submit a Pull Request off of main with your proposed changes. 
 You can also submit an issue if you find something wrong, have questions, or want to discuss something further.
 
-For help on how to setup a pipeline for a new data point, see the [Instructions](./src/jobs/DataPoint.md) here.
+See the [DevSetup](./src/docs/DevSetup.md) to learn how to setup a development environment
+
+For help on how to setup a pipeline for a new resource, see the [Instructions](./src/docs/Resource.md) here.
 
 Feel free to post anything under Issues even if it is a question or comment. If you see something incorrect from any of the endpoints, that is definitely something you can post about.
 
@@ -51,4 +50,3 @@ You may see a warning 'Unable to get GCS Bucket' while starting up the app. You 
  - The Creators and Contributors of [JetSetPedia](https://jetsetradio.fandom.com/wiki/Main_Page)
  - Greg Kennedy for gathering all of the [JSR Graffiti Files](https://greg-kennedy.com/jsr/) into one organized place.
  - The JetSetRadio Community
-
