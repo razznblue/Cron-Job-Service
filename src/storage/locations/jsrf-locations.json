@@ -7,7 +7,7 @@
     "unlockableCharacters": [],
     "adjacentLocations": ["Dogenzaka Hill", "Shibuya Terminal", "Rokkaku-Dai Heights", "99th Street"],
     "hasMixtape": false,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/the-garage.webp"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/the-garage.webp"
   },
   {
     "name": "Dogenzaka Hill",
@@ -17,7 +17,7 @@
     "unlockableCharacters": ["Beat", "Doom Riders"],
     "adjacentLocations": ["The Garage", "Shibuya Terminal"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/dogenzaka-hill.webp"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/dogenzaka-hill.webp"
   },
   {
     "name": "Shibuya Terminal",
@@ -27,7 +27,7 @@
     "unlockableCharacters": ["Combo", "Zero Beat"],
     "adjacentLocations": ["Dogenzaka Hill", "Chuo Street", "The Garage", "Hikage Street"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/shibuya-terminal.webp"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/shibuya-terminal.webp"
   },
   {
     "name": "Chuo Street",
@@ -37,7 +37,7 @@
     "unlockableCharacters": ["Roboy"],
     "adjacentLocations": ["Shibuya Terminal"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/chuo-street.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/chuo-street.jpeg"
   },
   {
     "name": "Rokkaku-Dai Heights",
@@ -47,7 +47,7 @@
     "unlockableCharacters": ["Gouji Rokkaku", "Rhyth"],
     "adjacentLocations": ["The Garage", "Tokyo Underground Sewage Facility"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/rokkaku-dai-heights.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/rokkaku-dai-heights.jpeg"
   },
   {
     "name": "99th Street",
@@ -57,7 +57,7 @@
     "unlockableCharacters": ["Rapid 99"],
     "adjacentLocations": ["The Garage", "The Skyscraper District and Pharaoh Park"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/99th-street.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/99th-street.jpeg"
   },
   {
     "name": "Tokyo Underground Sewage Facility",
@@ -67,7 +67,7 @@
     "unlockableCharacters": ["Garam", "Poison Jam"],
     "adjacentLocations": ["Rokkaku-Dai Heights", "Bottom Point of Sewage Facility", "Kibogaoka Hill", "The Fortified Residential Zone"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/sewage-facility.jpg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/sewage-facility.jpg"
   },
   {
     "name": "Bottom Point of Sewage Facility",
@@ -77,7 +77,7 @@
     "unlockableCharacters": ["Cube", "Poison Jam"],
     "adjacentLocations": ["Tokyo Underground Sewage Facility"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/bottom-point.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/bottom-point.jpeg"
   },
   {
     "name": "Hikage Street",
@@ -87,7 +87,7 @@
     "unlockableCharacters": ["Love Shockers"],
     "adjacentLocations": ["Shibuya Terminal"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/hikage-street.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/hikage-street.jpeg"
   },
   {
     "name": "The Skyscraper District and Pharaoh Park",
@@ -97,7 +97,7 @@
     "unlockableCharacters": ["The Immortals"],
     "adjacentLocations": ["99th Street", "Highway Zero", "The Site of Tokyo Line", "Sky Dinosaurian Square"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/skyscraper-district.jpg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/skyscraper-district.jpg"
   },
   {
     "name": "Sky Dinosaurian Square",
@@ -107,7 +107,7 @@
     "unlockableCharacters": ["NT-3000"],
     "adjacentLocations": ["The Skyscraper District and Pharaoh Park"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/sky-dinosaurian-square.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/sky-dinosaurian-square.jpeg"
   },
   {
     "name": "Highway Zero",
@@ -117,7 +117,7 @@
     "unlockableCharacters": ["Soda", "Noise Tanks"],
     "adjacentLocations": ["The Skyscraper District and Pharaoh Park"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/highway-zero.jpg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/highway-zero.jpg"
   },
   {
     "name": "The Future Site of Rokkaku Expo Stadium",
@@ -127,7 +127,7 @@
     "unlockableCharacters": ["Jazz"],
     "adjacentLocations": ["99th Street"],
     "hasMixtape": false,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/future-site.webp"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/future-site.webp"
   },
   {
     "name": "Kibogaoka Hill",
@@ -137,7 +137,7 @@
     "unlockableCharacters": ["Boogie", "Pots"],
     "adjacentLocations": ["Tokyo Underground Sewage Facility"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/kibogaoka-hill.webp"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/kibogaoka-hill.webp"
   },
   {
     "name": "The Site of Tokyo Line",
@@ -147,7 +147,7 @@
     "unlockableCharacters": [],
     "adjacentLocations": ["The Skyscraper District and Pharaoh Park"],
     "hasMixtape": false,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/future-site-of-tokyo-line.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/future-site-of-tokyo-line.jpeg"
   },
   {
     "name": "The Fortified Residential Zone",
@@ -157,7 +157,7 @@
     "unlockableCharacters": ["A.KU.MU"],
     "adjacentLocations": ["Tokyo Underground Sewage Facility"],
     "hasMixtape": true,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/fortified-residential-zone.webp"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/fortified-residential-zone.webp"
   },
   {
     "name": "Gouji's Tower",
@@ -167,6 +167,6 @@
     "unlockableCharacters": [],
     "adjacentLocations": [],
     "hasMixtape": false,
-    "imageUrl": "https://storage.googleapis.com/jetsetradio-api/jsrf/locations/goujis-tower.jpeg"
+    "imageUrl": "https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/locations/goujis-tower.jpeg"
   }
 ]
