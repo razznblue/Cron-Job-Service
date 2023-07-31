@@ -1,4 +1,4 @@
-# <img src="https://storage.googleapis.com/jetsetradio-api-core/images/jsr-logo.png" width=6% />  JetSetRadio-API Admin
+# <img src="https://media-library-swgu.netlify.app/images/jsr-logo.png" width=6% />  JetSetRadio-API Admin
 
 A set of Tools to manage the [JetSetRadio-API](https://github.com/Jet-Set-Radio-API/JetSetRadio-API)
 
