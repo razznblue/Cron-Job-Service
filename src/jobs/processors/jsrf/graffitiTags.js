@@ -5,8 +5,6 @@ import Constants from "../../../constants/Constants.js";
 import { GraffitiTagJSRF } from '../../../models/GraffitiTagModel.js';
 import BaseModel from '../../../models/BaseModel.js';
 import LOGGER from '../../../utils/logger.js';
-import { getCloudFiles } from '../../../utils/googlecloud.js';
-
 
 const { WIKI_BASE_URL, JET_SET_RADIO_FUTURE } = Constants;
 const GRAFFITI_TAGS_PATH = '/wiki/Graffiti_Tags_(JSRF)';
@@ -15,15 +13,13 @@ const LOCATION_JSRF = 'locationJsrf';
 
 /*
    - Scrapes the Graffiti-Tags page on the wiki and builds out a 'GraffitiTagJSRF' model. It will also 
-  add the imgUrl from google cloud storage if it exists. Saves the resulting document to mongoDB
+  add the imgUrl from media-service if it exists. Saves the resulting document to mongoDB
 */
 export const scrapeGraffitiTags = async () => {
   console.time(jobExecutionTimeName);
   const url = `${WIKI_BASE_URL}${GRAFFITI_TAGS_PATH}`;
 
-  const requests = await Promise.all([Axios.get(url), getCloudFiles('jsrf/graffiti-tags/', '/')])
-  const wikiHtml = requests[0];
-  const cloudFiles = requests[1];
+  const wikiHtml = await Axios.get(url);
 
   const $ = load(wikiHtml.data);
   const modelName = 'graffitiTagJsrf';
@@ -31,8 +27,8 @@ export const scrapeGraffitiTags = async () => {
 
   const trList = $('.article-table > tbody > tr');
   const filteredTrList = filterTableRows($, trList);
-
   LOGGER.info(`Filtered GraffitiTag TableRows records from ${trList.length} to ${filteredTrList.length}`);
+
   for (const el of filteredTrList) {
     const tds = $(el).find("td");
     const dataToSave = {
@@ -43,14 +39,15 @@ export const scrapeGraffitiTags = async () => {
       size: $(tds[4]).text().trim(),
       wikiImageUrl: getWikiImageUrl($, tds)
     }
-    promises.push(saveGraffitiTag(modelName, dataToSave, cloudFiles))
+    promises.push(saveGraffitiTag(modelName, dataToSave))
   }
-  const users = await Promise.all(promises);
+  const tags = await Promise.all(promises);
   console.timeEnd(jobExecutionTimeName);
-  LOGGER.info(`Finished JSRF Graffiti-Tags Job. Processed ${users.length} new documents.`);
+
+  LOGGER.info(`Finished JSRF Graffiti-Tags Job. Processed ${tags.length} new documents.`);
 }
 
-const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
+const saveGraffitiTag = async (modelName, dataToSave) => {
   const { number, tagName, level, location, size, wikiImageUrl } = dataToSave;
   const graffitiSoulLocation = location;
   const tag = await BaseModel.getByKeyAndValue(modelName, 'number', number);
@@ -62,9 +59,9 @@ const saveGraffitiTag = async (modelName, dataToSave, cloudFiles) => {
       graffitiTag.size = size;
       graffitiTag.gameId = await BaseModel.getGameId(JET_SET_RADIO_FUTURE);
       graffitiTag.wikiImageUrl = wikiImageUrl;
-      setImgUrl(graffitiTag, cloudFiles);
+      await setImgUrl(graffitiTag);
       await graffitiTag.save();
-      LOGGER.debug(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
+      LOGGER.info(`Saved new JSRF GraffitiTag ${number} : ${tagName}`);
     } else {
       if (level) {
         //TODO Turn this into a trigger in a future config tool
@@ -118,13 +115,16 @@ const filterTableRows = ($, tableRowsList) => {
   return filteredTrList;
 }
 
-const setImgUrl = (graffitiTag, cloudFiles) => {
-  for (const file of cloudFiles) {
-    const fileNumber = extractNumbers(file.name);
-    const graffitiNumber = extractNumbers(graffitiTag.number);
-    if (graffitiNumber === fileNumber) {
-      graffitiTag.imageUrl = file.url;
+const setImgUrl = async (graffitiTag) => {
+  const graffitiNumber = extractNumbers(graffitiTag.number);
+  const imgUrl = `https://media-library-swgu.netlify.app/jetsetradio-api/jsrf/graffiti-tags/${graffitiNumber}.png`;
+  try {
+    const response = await Axios.get(imgUrl);
+    if (response.status === 200) {
+      graffitiTag.imageUrl = imgUrl;
     }
+  } catch(err) {
+    LOGGER.error(`ImgUrl does exist for graffitiTag ${graffitiTag.number} in media-service`);
   }
 }
 
