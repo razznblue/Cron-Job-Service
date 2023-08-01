@@ -26,33 +26,33 @@
       {
         "country": "US",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/us/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/us/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/us/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/us/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/us/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/us/disc.webp"
         }
       },
       {
         "country": "JP",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/jp/front-cover-1.webp",
-          "frontCoverSecondary": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/jp/front-cover-2.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/jp/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/jp/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/jp/front-cover-1.webp",
+          "frontCoverSecondary": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/jp/front-cover-2.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/jp/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/jp/disc.webp"
         }
       },
       {
         "country": "EU",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/eu/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/eu/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/eu/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/eu/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/eu/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/eu/disc.webp"
         }
       },
       {
         "country": "BR",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/br/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr/br/back-cover.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/br/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr/br/back-cover.webp"
         }
       }
     ]
@@ -85,33 +85,33 @@
       {
         "country": "US",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/us/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/us/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/us/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/us/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/us/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/us/disc.webp"
         }
       },
       {
         "country": "JP",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/jp/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/jp/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/jp/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/jp/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/jp/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/jp/disc.webp"
         }
       },
       {
         "country": "EU",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/eu/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/eu/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/eu/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/eu/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/eu/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/eu/disc.webp"
         }
       },
       {
         "country": "DE",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/de/front-cover.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/de/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsrf/de/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/de/front-cover.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/de/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsrf/de/disc.webp"
         }
       }
     ]
@@ -135,10 +135,10 @@
       {
         "country": "JP",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/de-la-jet-set-radio/jp/front-cover-1.webp",
-          "frontCoverSecondary": "https://storage.googleapis.com/jetsetradio-api-core/images/games/de-la-jet-set-radio/jp/front-cover-2.webp",
-          "backCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/de-la-jet-set-radio/jp/back-cover.webp",
-          "disc": "https://storage.googleapis.com/jetsetradio-api-core/images/games/de-la-jet-set-radio/jp/disc.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/de-la-jet-set-radio/jp/front-cover-1.webp",
+          "frontCoverSecondary": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/de-la-jet-set-radio/jp/front-cover-2.webp",
+          "backCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/de-la-jet-set-radio/jp/back-cover.webp",
+          "disc": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/de-la-jet-set-radio/jp/disc.webp"
         }
       }
     ]
@@ -166,7 +166,7 @@
       {
         "country": "US",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/jsr-advance/us/front-cover.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/jsr-advance/us/front-cover.webp"
         }
       }
     ]
@@ -190,7 +190,7 @@
       {
         "country": "JP",
         "images": {
-          "frontCover": "https://storage.googleapis.com/jetsetradio-api-core/images/games/typing-jet/jp/front-cover.webp"
+          "frontCover": "https://media-library-swgu.netlify.app/jetsetradio-api-core/games/typing-jet/jp/front-cover.webp"
         }
       }
     ]
