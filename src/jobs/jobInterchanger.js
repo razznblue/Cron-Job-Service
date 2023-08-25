@@ -8,6 +8,8 @@ import processJSRSongs from "./processors/jsr/songs.js";
 import { processCharacters } from "./processors/characters/characterJob.js";
 import { processLocations } from "./processors/locations/locationsJob.js";
 
+import { processMReliefFamily } from './m_fires_relief/jobs.js'
+
 
 const TEST_JOB = 'TEST_JOB';
 const JSRF_GRAFFITI_TAGS = 'JSRF_GRAFFITI_TAGS';
@@ -17,6 +19,9 @@ const JSR_SONGS = 'JSR_SONGS';
 const GAMES = 'GAMES';
 const CHARACTERS = 'CHARACTERS';
 const LOCATIONS = 'LOCATIONS';
+
+/* Need to move to cronjob-service */
+const M_FIRES_RELIEF_FAMILY = 'M_FIRES_RELIEF_FAMILY';
 
 export const JobInterchanger = {
 
@@ -42,6 +47,10 @@ export const JobInterchanger = {
         return await jobActions.processCharacters();
       case LOCATIONS:
         return await jobActions.processLocations();
+      
+      /* cron-job service */
+      case M_FIRES_RELIEF_FAMILY:
+        return await jobActions.processMReliefFamily();
     }
     return () => {};
   }
@@ -57,4 +66,7 @@ const jobActions = {
   processJSRSongs: async () => await processJSRSongs(),
   processCharacters: async () => await processCharacters(),
   processLocations: async () => await processLocations(),
+
+  /* cron-job service */
+  processMReliefFamily: async () => await processMReliefFamily()
 }
