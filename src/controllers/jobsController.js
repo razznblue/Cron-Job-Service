@@ -52,6 +52,8 @@ export const updateAvailableJob = async (req, res) => {
       const cronExpression = getCronExpression(req?.body?.interval);
       if (cronExpression) {
         job.interval = { name: req?.body?.interval, expression: cronExpression };
+      } else {
+        return res.status(400).send("Cron Expression Not Found")
       }
     }
     if (req?.body?.timezone) {

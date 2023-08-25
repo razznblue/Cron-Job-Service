@@ -1,5 +1,6 @@
 import LOGGER from "../utils/logger.js";
 
+/* CronJobs can only be assigned cronSchedules from this list */
 const intervals = {
   everyMinute: '* * * * *',
   everyFiveMinutes: '5 * * * *',

@@ -1,6 +1,6 @@
 {
   "name": "jet-set-radio-api-admin",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An API providing data from the Jet Set Radio universe",
   "main": "index.js",
   "scripts": {
