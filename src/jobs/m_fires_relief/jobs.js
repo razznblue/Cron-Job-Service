@@ -13,6 +13,6 @@ export const processMReliefFamily = async () => {
     });
     console.log(`Called MRF-Service /family/process successfully`);
   } catch(err) {
-    console.log(`error processing family. Reason: ${err?.response?.data}`)
+    console.log(`error calling MRF-Service. Reason: ${err?.response?.data}`);
   } 
 }
