@@ -10,6 +10,8 @@ import { processLocations } from "./processors/locations/locationsJob.js";
 
 import { processMReliefFamily } from './m_fires_relief/jobs.js'
 
+import { processCardsSWGU, processLocationsSWGU } from "./swgu/jobs.js";
+
 
 const TEST_JOB = 'TEST_JOB';
 const JSRF_GRAFFITI_TAGS = 'JSRF_GRAFFITI_TAGS';
@@ -22,6 +24,9 @@ const LOCATIONS = 'LOCATIONS';
 
 /* Need to move to cronjob-service */
 const M_FIRES_RELIEF_FAMILY = 'M_FIRES_RELIEF_FAMILY';
+
+const SWGU_CARDS = 'SWGU_CARDS';
+const SWGU_LOCATIONS = 'SWGU_LOCATIONS';
 
 export const JobInterchanger = {
 
@@ -51,6 +56,11 @@ export const JobInterchanger = {
       /* cron-job service */
       case M_FIRES_RELIEF_FAMILY:
         return await jobActions.processMReliefFamily();
+
+      case SWGU_CARDS:
+        return await jobActions.processCardsSWGU();
+      case SWGU_LOCATIONS:
+        return await jobActions.processLocationsSWGU();
     }
     return () => {};
   }
@@ -68,5 +78,8 @@ const jobActions = {
   processLocations: async () => await processLocations(),
 
   /* cron-job service */
-  processMReliefFamily: async () => await processMReliefFamily()
+  processMReliefFamily: async () => await processMReliefFamily(),
+
+  processCardsSWGU: async () => await processCardsSWGU(),
+  processLocationsSWGU: async () => await processLocationsSWGU()
 }
