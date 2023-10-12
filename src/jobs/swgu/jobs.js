@@ -3,7 +3,6 @@ import axios from "axios";
 const baseUrl = process.env.SWGU_URL;
 
 export const processCardsSWGU = async () => {
-  console.log(process.env.SWGU_USER, process.env.SWGU_KEY);
   const url = `${baseUrl}/api/jobs/cards`;
   try {
     await axios.post(url, {

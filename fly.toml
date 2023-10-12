@@ -1,4 +1,7 @@
-# fly.toml file generated for jetsetradio-api-admin on 2023-04-16T20:27:39-05:00
+# fly.toml app configuration file generated for jetsetradio-api-admin on 2023-10-12T11:34:39-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
 app = "jetsetradio-api-admin"
 primary_region = "dfw"
