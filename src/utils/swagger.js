@@ -7,7 +7,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'JetSetRadio-API',
+      title: 'Cron-Job-Service',
       version: process.env.npm_package_version,
     },
   },

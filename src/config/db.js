@@ -53,5 +53,3 @@ const getMongoUri = (DB_TYPE) => {
 
 
 export const coreConnection = createDBConnection(getMongoUri('CORE_DB'));
-export const jsrConnection = createDBConnection(getMongoUri('JSR_DB'));
-export const jsrfConnection = createDBConnection(getMongoUri('JSRF_DB'));

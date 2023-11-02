@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { coreConnection, jsrConnection, jsrfConnection } from "../config/db.js";
+import { coreConnection } from "../config/db.js";
 
 class HealthCheckManager {
   constructor() {
@@ -8,8 +8,6 @@ class HealthCheckManager {
     this.message = 'OK';
     this.dbState = {
       core: mongoose.STATES[coreConnection.readyState],
-      jsr: mongoose.STATES[jsrConnection.readyState],
-      jsrf: mongoose.STATES[jsrfConnection.readyState]
     };
     this.timestamp = Date.now();
     this.nodeVersion = process.version;

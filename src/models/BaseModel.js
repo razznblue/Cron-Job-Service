@@ -1,31 +1,12 @@
-import { GraffitiTagJSR, GraffitiTagJSRF } from "./GraffitiTagModel.js";
 import { CronJob } from "./CronJobModel.js";
 import { AvailableCronJob } from "./AvailableCronJob.js";
-import { Game } from "./GameModel.js";
 import { Admin } from "./AdminModel.js";
-import { SongJSR, SongJSRF } from "./SongModel.js";
-import { Artist } from "./ArtistModel.js";
-import { CharacterJSR, CharacterJSRF} from "./CharacterModel.js";
-import { LocationJSR, LocationJSRF } from "./LocationModel.js";
-import { LevelJSR } from "./LevelModel.js";
 import LOGGER from "../utils/logger.js";
-
 
 const models = {
   admin: Admin,
   cronJob: CronJob,
   availableCronJob: AvailableCronJob,
-  game: Game,
-  graffitiTagJsr: GraffitiTagJSR,
-  graffitiTagJsrf: GraffitiTagJSRF,
-  songJsr: SongJSR,
-  songJsrf: SongJSRF,
-  artist: Artist,
-  characterJsr: CharacterJSR,
-  characterJsrf: CharacterJSRF,
-  locationJsr: LocationJSR,
-  locationJsrf: LocationJSRF,
-  levelJsr: LevelJSR
 };
 
 const BaseModel = {
@@ -101,15 +82,6 @@ const BaseModel = {
       LOGGER.error(`Error removing ALL documents from ${modelName} collection. \n${err}`);
     }
   },
-
-  async getGameId(gameName) {
-    try {
-      const game = await models['game'].findOne({ name: gameName }, '_id');
-      return game._id;
-    } catch(err) {
-      LOGGER.error(`Error fetching gameId from name ${gameName}. \n${err}`);
-    }
-  }
 
 }
 
