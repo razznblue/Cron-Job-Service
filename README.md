@@ -4,13 +4,12 @@ A Reusable Micro-Service able to fire cron jobs needed by other applications. Of
 
 
 ## Integrations
- - MongoDB
- - Node Cron
- - SwaggerUI
+ - [MongoDB](https://www.mongodb.com/)
+ - [Node Schedule](https://github.com/node-schedule/node-schedule)
+ - [SwaggerUI](https://swagger.io/tools/swagger-ui/)
  
 ## Authentication
  All CronJob are protected so no one can see what you doing behind the scenes 👀
-
 
 ## Contributing
 I am open and welcome to ALL contributions!
