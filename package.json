@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npm install",
-    "prod": "export $(cat ./prod.env | egrep -v '#|^$' | xargs) && node index.js",
-    "qa": "export $(cat ./qa.env | egrep -v '#|^$' | xargs) && nodemon --inspect index.js"
+    "start": "node index.js",
+    "dev": "nodemon --inspect index.js"
   },
   "type": "module",
   "keywords": [],

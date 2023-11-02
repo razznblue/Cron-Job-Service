@@ -10,25 +10,7 @@
  - Create a local MongoDB Database or in Atlas.
 
 ## Fill out env file
- - Using the [.env.example](../../.env.example) file, create a `qa.env` fill out the necessary parameters.
- - Example `qa.env` file:
-```
-# local env
-PORT=3005
-BASE_URL=http://localhost:3005
-LOG_LEVEL=info
-
-# Used to generate a sessionToken for the admin user
-# You can generate/type this yourself while developing. It can be any string
-TOKEN_SECRET=
-
-# DB
-MONGO_USER=
-MONGO_PASS=
-MONGO_CLUSTER=
-MONGO_DOMAIN=
-CORE_DB=
-```
+ - Using the [.env.example](../../.env.example) file, create a `.env` file and fill out the necessary parameters.
 
 ## Admin Setup
  - Run this route to create your local admin user passing in a username and password to the body.
