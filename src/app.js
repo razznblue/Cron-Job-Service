@@ -21,7 +21,7 @@ const App = {
   },
 
   init(app) {
-    LOGGER.info(`JetSetRadio-API listening on Port ${PORT}`);
+    LOGGER.info(`Cron Job Service listening on Port ${PORT}`);
     const baseUrl = process.env.BASE_URL;
     const ping = process.env.PING;
     setUpSwagger(app);

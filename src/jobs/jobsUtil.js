@@ -83,7 +83,7 @@ export const triggerCronJob = async (jobName) => {
       LOGGER.info(`Updated firetimes for triggered job ${jobName}`);
     }
   } else {
-    LOGGER.warn(`Could not trigger ${jobName} because it is not an available job.`);
+    LOGGER.warn(`Could not trigger ${jobName} because it doesn't exist.`);
   }
 }
 
