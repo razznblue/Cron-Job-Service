@@ -31,6 +31,9 @@ body {
     margin-bottom: 20px;
     letter-spacing: 3px;
 }
+.wrapper p {
+  text-align: center;
+}
 
 .wrapper .input_field{
     margin-bottom:10px;
