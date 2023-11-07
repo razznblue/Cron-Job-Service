@@ -14,7 +14,7 @@ const router = express.Router();
 router.use('/jobs', sessionAuth, jobs); 
 router.use('/admin', admin);
 
-router.get('/', (req, res) => res.send('Cron Job Service is Running'));
+router.get('/', (req, res) => res.redirect('/admin/login'));
 
 router.get('/health', (req, res) => {
   const healthCheckManager = new HealthCheckManager();
